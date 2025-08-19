@@ -1,3 +1,4 @@
+'use client';
 import SwrInitor from '@/app/components/swr-initor';
 import { AlertProvider } from '@/context/AlertContext';
 import { LoadProvider } from '@/context/LoadContext';
@@ -5,11 +6,23 @@ import { AppContextProvider } from '@/context/app-context';
 import { EventEmitterContextProvider } from '@/context/event-emitter';
 import { ModalContextProvider } from '@/context/modal-context';
 import type { ReactNode } from 'react';
+import React from 'react';
 import Footer from '../components/Footer';
-import Nav from '../components/Navigation';
+import HeaderView from '../components/Header';
 import '../globals.css';
 
 const Layout = ({ children }: { children: ReactNode }) => {
+
+    const [section, setSection] = React.useState('dashboard');
+
+    const links = [
+        { label: 'About', href: '/about' },
+        { label: 'Platform', href: '/platform' },
+        { label: 'Technology', href: '/technology' },
+        { label: 'Gallery', href: '/gallery' },
+        { label: 'Contact', href: '/contact' }
+    ];
+
     return (
         <>
             <SwrInitor>
@@ -18,8 +31,14 @@ const Layout = ({ children }: { children: ReactNode }) => {
                         <AlertProvider>
                             <LoadProvider>
                                 <ModalContextProvider>
-                                    {/* <HeaderView /> */}
-                                    <Nav />
+                                    <HeaderView
+                                        {...{
+                                            title: 'AI English',
+                                            links,
+                                            section,
+                                            setSection
+                                        }}
+                                    />
                                     <div className="flex flex-col   items-center w-full  ">
                                         <div
                                             className="max-w-7xl  from-white to-gray-50 text-gray-900"
@@ -38,12 +57,6 @@ const Layout = ({ children }: { children: ReactNode }) => {
             </SwrInitor>
         </>
     );
-};
-
-export const metadata = {
-    title: "AI English — Learn Better with AI",
-    description:
-        "A next-generation platform for English writing, reading and speaking, powered by cutting-edge AI.",
 };
 
 export default Layout;
