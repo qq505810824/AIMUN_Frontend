@@ -4,14 +4,7 @@ const nextConfig = {
     experimental: {
         missingSuspenseWithCSRBailout: false,
     },
-    images: {
-        remotePatterns: [
-            {
-                protocol: 'https',
-                hostname: 'images.unsplash.com',
-            },
-        ],
-    },
+
     webpack: (config) => {
         // load worker files as a urls with `file-loader`
         config.module.rules.unshift({
@@ -29,6 +22,14 @@ const nextConfig = {
         });
 
         return config;
+    },
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'images.unsplash.com',
+            },
+        ],
     },
     async redirects() {
         return [
