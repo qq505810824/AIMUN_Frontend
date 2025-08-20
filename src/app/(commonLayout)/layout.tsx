@@ -16,10 +16,11 @@ const Layout = ({ children }: { children: ReactNode }) => {
     const [section, setSection] = React.useState('dashboard');
 
     const links = [
+        { label: 'Home', href: '/' },
         { label: 'About', href: '/about' },
         { label: 'Platform', href: '/platform' },
-        { label: 'Technology', href: '/technology' },
-        { label: 'Gallery', href: '/gallery' },
+        // { label: 'Technology', href: '/technology' },
+        // { label: 'Gallery', href: '/gallery' },
         { label: 'Contact', href: '/contact' }
     ];
 

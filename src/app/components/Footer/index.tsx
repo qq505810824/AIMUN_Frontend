@@ -1,4 +1,4 @@
-import { Globe2, Mail, MapPin } from "lucide-react";
+import { Globe2, Mail, Phone } from "lucide-react";
 
 export default function Footer() {
     return (
@@ -10,30 +10,32 @@ export default function Footer() {
                         AI English
                     </div>
                     <p className="mt-3">
-                        Elevating English learning with cutting-edge AI for classrooms and self-study.
+                        Elevating English learning with cutting-edge AI for classrooms.
                     </p>
                 </div>
                 <div>
                     <div className="font-semibold">Quick Links</div>
                     <div className="mt-3 flex flex-col">
+                        <a className="hover:text-blue-600" href="/">Home</a>
+                        <a className="hover:text-blue-600" href="/about">About</a>
                         <a className="hover:text-blue-600" href="/platform">Platform</a>
-                        <a className="hover:text-blue-600" href="/technology">Technology</a>
-                        <a className="hover:text-blue-600" href="/gallery">Gallery</a>
+                        {/* <a className="hover:text-blue-600" href="/technology">Technology</a> */}
+                        {/* <a className="hover:text-blue-600" href="/gallery">Gallery</a> */}
                         <a className="hover:text-blue-600" href="/contact">Contact</a>
                     </div>
                 </div>
                 <div>
                     <div className="font-semibold">Contact</div>
                     <p className="mt-3 flex items-center gap-2">
-                        <Mail className="h-4 w-4" /> info@hospidocai.com
+                        <Mail className="h-4 w-4" /> info@docai.net / info@hospidocai.com
                     </p>
                     <p className="mt-1 flex items-center gap-2">
-                        <MapPin className="h-4 w-4" /> AVENIDA DR MÁRIO SOARES NO 25 EDIF MONTEPIO 5 PISO 47, Macau
+                        <Phone className="h-4 w-4" /> + 852 44106234 / +853 66870988
                     </p>
                 </div>
             </div>
             <div className="text-center text-xs text-gray-500 pb-8">
-                © {new Date().getFullYear()} HOSPIDOC Artificial Intelligence Technology Limited
+                © {new Date().getFullYear()} AI English
             </div>
         </footer>
     );
