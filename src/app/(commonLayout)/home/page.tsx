@@ -1,36 +1,36 @@
-"use client";
+'use client';
 
-import { ArrowRight, BookOpen, GraduationCap, Mic } from "lucide-react";
-import Image from "next/image";
-import { useState } from "react";
+import { ArrowRight, BookOpen, GraduationCap, Mic } from 'lucide-react';
+import Image from 'next/image';
+import { useState } from 'react';
 
 export default function HomePage() {
     const [sent, setSent] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [err, setErr] = useState("");
+    const [err, setErr] = useState('');
 
     async function onSubmit(e: any) {
         e.preventDefault();
         setLoading(true);
-        setErr("");
+        setErr('');
 
         const form = new FormData(e.currentTarget);
         const payload = Object.fromEntries(form.entries());
 
         try {
-            const res = await fetch("/api/contact", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload),
+            const res = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
             });
             if (!res.ok) {
                 const data = await res.json().catch(() => ({}));
-                throw new Error(data?.error || "Failed to send message.");
+                throw new Error(data?.error || 'Failed to send message.');
             }
             setSent(true);
             e.currentTarget.reset();
         } catch (error: any) {
-            setErr(error?.message || "Something went wrong.");
+            setErr(error?.message || 'Something went wrong.');
         } finally {
             setLoading(false);
         }
@@ -38,12 +38,11 @@ export default function HomePage() {
 
     return (
         <main>
-
             {/* HERO */}
             <section className="max-w-7xl mx-auto px-4 pt-24 pb-16 grid md:grid-cols-2 gap-10 items-center">
                 <div>
                     <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
-                        Unlock the Future of Language Learning with{" "}
+                        Unlock the Future of Language Learning with{' '}
                         <span className="text-blue-600">AI English</span>
                     </h1>
                     <p className="mt-5 text-lg text-gray-600 max-w-xl">
@@ -51,10 +50,16 @@ export default function HomePage() {
                         learning—combining AI grading, adaptive reading, and speech intelligence.
                     </p>
                     <div className="mt-8 flex gap-3">
-                        <a href="https://aienglish.docai.net" className="px-5 py-3 rounded-2xl inline-flex items-center gap-2 bg-blue-600 text-white hover:bg-blue-700 shadow">
+                        <a
+                            href="https://aienglish.docai.net"
+                            className="px-5 py-3 rounded-2xl inline-flex items-center gap-2 bg-blue-600 text-white hover:bg-blue-700 shadow"
+                        >
                             Get Started <ArrowRight className="h-4 w-4" />
                         </a>
-                        <a href="#demo" className="px-5 py-3 rounded-2xl inline-flex items-center gap-2 bg-white border border-gray-200 hover:bg-gray-50">
+                        <a
+                            href="#demo"
+                            className="px-5 py-3 rounded-2xl inline-flex items-center gap-2 bg-white border border-gray-200 hover:bg-gray-50"
+                        >
                             Book a Demo
                         </a>
                     </div>
@@ -82,10 +87,10 @@ export default function HomePage() {
                         <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow">
                             <div className="flex items-center gap-2">
                                 <Mic className="h-6 w-6 text-blue-600" />
-                                <div className="font-semibold">Future-proof</div>
+                                <div className="font-semibold">Smart & Scalable</div>
                             </div>
                             <div className="text-gray-600 mt-2">
-                                Unified writing, reading & speaking—built to evolve
+                                Adapts to learners, grows with educators
                             </div>
                         </div>
                     </div>
@@ -95,14 +100,14 @@ export default function HomePage() {
                 <div className="relative">
                     <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-xl border border-gray-200">
                         <Image
-                            src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?q=80&w=1200&auto=format&fit=crop"
+                            src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=800&auto=format&fit=crop"
                             alt="Students learning with technology"
                             width={1200}
                             height={900}
                             className="h-full w-full object-cover"
                         />
                     </div>
-                    <div className="hidden md:block absolute -bottom-10 -right-6 w-64 rounded-2xl overflow-hidden shadow-lg border border-gray-200">
+                    <div className="hidden  absolute -bottom-10 -right-6 w-64 rounded-2xl overflow-hidden shadow-lg border border-gray-200">
                         <Image
                             src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=800&auto=format&fit=crop"
                             alt="Teacher dashboard preview"
@@ -191,7 +196,7 @@ export default function HomePage() {
                                     disabled={loading}
                                     className="px-6 py-3 rounded-2xl bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50"
                                 >
-                                    {loading ? "Sending..." : "Send Message"}
+                                    {loading ? 'Sending...' : 'Send Message'}
                                 </button>
                             </form>
                         ) : (
@@ -203,7 +208,6 @@ export default function HomePage() {
                 </div>
                 {/* Note: Removed address/telephone lines beneath the form as requested */}
             </section>
-
         </main>
     );
 }

@@ -1,5 +1,5 @@
-import { Globe2 } from "lucide-react";
-import Link from "next/link";
+import { Globe2 } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Nav() {
     return (
@@ -10,11 +10,36 @@ export default function Nav() {
                     <span className="font-bold">AI English</span>
                 </Link>
                 <nav className="flex items-center gap-1 text-sm">
-                    <Link className="px-3 py-2 rounded-xl hover:text-blue-600 hover:bg-gray-100" href="/about">About</Link>
-                    <Link className="px-3 py-2 rounded-xl hover:text-blue-600 hover:bg-gray-100" href="/platform">Platform</Link>
-                    <Link className="px-3 py-2 rounded-xl hover:text-blue-600 hover:bg-gray-100" href="/technology">Technology</Link>
-                    <Link className="px-3 py-2 rounded-xl hover:text-blue-600 hover:bg-gray-100" href="/gallery">Gallery</Link>
-                    <Link className="px-3 py-2 rounded-xl hover:text-blue-600 hover:bg-gray-100" href="/contact">Contact</Link>
+                    <Link
+                        className="px-3 py-2 rounded-xl hover:text-blue-600 hover:bg-gray-100"
+                        href="/about"
+                    >
+                        About
+                    </Link>
+                    <Link
+                        className="px-3 py-2 rounded-xl hover:text-blue-600 hover:bg-gray-100"
+                        href="/platform"
+                    >
+                        Platform
+                    </Link>
+                    <Link
+                        className="px-3 py-2 rounded-xl hover:text-blue-600 hover:bg-gray-100"
+                        href="/technology"
+                    >
+                        Technology
+                    </Link>
+                    <Link
+                        className="px-3 py-2 rounded-xl hover:text-blue-600 hover:bg-gray-100"
+                        href="/gallery"
+                    >
+                        Gallery
+                    </Link>
+                    <Link
+                        className="px-3 py-2 rounded-xl hover:text-blue-600 hover:bg-gray-100"
+                        href="/contact"
+                    >
+                        Contact
+                    </Link>
                 </nav>
             </div>
         </header>

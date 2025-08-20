@@ -1,4 +1,4 @@
-import { Globe2, Mail, Phone } from "lucide-react";
+import { Globe2, Mail, Phone } from 'lucide-react';
 
 export default function Footer() {
     return (
@@ -16,12 +16,20 @@ export default function Footer() {
                 <div>
                     <div className="font-semibold">Quick Links</div>
                     <div className="mt-3 flex flex-col">
-                        <a className="hover:text-blue-600" href="/">Home</a>
-                        <a className="hover:text-blue-600" href="/about">About</a>
-                        <a className="hover:text-blue-600" href="/platform">Platform</a>
+                        <a className="hover:text-blue-600" href="/">
+                            Home
+                        </a>
+                        <a className="hover:text-blue-600" href="/about">
+                            About
+                        </a>
+                        <a className="hover:text-blue-600" href="/platform">
+                            Platform
+                        </a>
                         {/* <a className="hover:text-blue-600" href="/technology">Technology</a> */}
                         {/* <a className="hover:text-blue-600" href="/gallery">Gallery</a> */}
-                        <a className="hover:text-blue-600" href="/contact">Contact</a>
+                        <a className="hover:text-blue-600" href="/contact">
+                            Contact
+                        </a>
                     </div>
                 </div>
                 <div>

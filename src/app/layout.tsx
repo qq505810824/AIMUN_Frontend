@@ -8,9 +8,9 @@ import './styles/globals.css';
 import './styles/markdown.scss';
 
 export const metadata = {
-    title: "AI English — Learn Better with AI",
+    title: 'AI English — Learn Better with AI',
     description:
-        "A next-generation platform for English writing, reading and speaking, powered by cutting-edge AI.",
+        'A next-generation platform for English writing, reading and speaking, powered by cutting-edge AI.'
 };
 
 export const viewport: Viewport = {

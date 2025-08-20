@@ -12,7 +12,6 @@ import HeaderView from '../components/Header';
 import '../globals.css';
 
 const Layout = ({ children }: { children: ReactNode }) => {
-
     const [section, setSection] = React.useState('dashboard');
 
     const links = [
@@ -41,9 +40,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
                                         }}
                                     />
                                     <div className="flex flex-col   items-center w-full  ">
-                                        <div
-                                            className="max-w-7xl  from-white to-gray-50 text-gray-900"
-                                        >
+                                        <div className="max-w-7xl  from-white to-gray-50 text-gray-900">
                                             {children}
                                         </div>
                                     </div>

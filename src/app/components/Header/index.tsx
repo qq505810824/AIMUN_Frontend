@@ -32,9 +32,7 @@ export default function HeaderView(props: ViewProps) {
         router.push(section);
     };
 
-    const logout = async () => {
-
-    };
+    const logout = async () => {};
 
     return (
         <>
@@ -104,12 +102,17 @@ export default function HeaderView(props: ViewProps) {
                                 <Globe2 className="h-6 w-6 text-blue-600" />
                                 <span className="font-bold">{title}</span>
                             </Link>
-
                         </div>
                         <nav className="hidden md:flex items-center gap-1 text-sm">
                             {links.map((link, index) => {
                                 return (
-                                    <Link key={index} className="px-3 py-2 rounded-xl hover:text-blue-600 hover:bg-gray-100" href={link.href}>{link.label}</Link>
+                                    <Link
+                                        key={index}
+                                        className="px-3 py-2 rounded-xl hover:text-blue-600 hover:bg-gray-100"
+                                        href={link.href}
+                                    >
+                                        {link.label}
+                                    </Link>
                                 );
                             })}
                         </nav>
@@ -128,10 +131,7 @@ export default function HeaderView(props: ViewProps) {
 
                                 // console.log('pathname', pathname);
 
-                                if (
-                                    (pathname == '/home' || pathname == '/') &&
-                                    link.href == '/'
-                                ) {
+                                if ((pathname == '/home' || pathname == '/') && link.href == '/') {
                                     isActive = true;
                                 }
 

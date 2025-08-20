@@ -60,7 +60,6 @@ export const AppContextProvider: FC<AppContextProviderProps> = ({ children }) =>
         enrollments: []
     });
 
-
     return (
         <AppContext.Provider
             value={{
