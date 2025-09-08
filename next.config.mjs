@@ -23,23 +23,23 @@ const nextConfig = {
 
         return config;
     },
-    images: {
-        remotePatterns: [
-            {
-                protocol: 'https',
-                hostname: 'images.unsplash.com',
-            },
-        ],
-    },
-    async redirects() {
-        return [
-            {
-                source: '/',
-                destination: '/home',
-                permanent: false,
-            },
-        ]
-    },
+    // images: {
+    //     remotePatterns: [
+    //         {
+    //             protocol: 'https',
+    //             hostname: 'images.unsplash.com',
+    //         },
+    //     ],
+    // },
+    // async redirects() {
+    //     return [
+    //         {
+    //             source: '/',
+    //             destination: '/',
+    //             permanent: false,
+    //         },
+    //     ]
+    // },
 };
 
 export default nextConfig;

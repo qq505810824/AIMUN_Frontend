@@ -12,7 +12,7 @@ const SwrInitor = ({ children }: SwrInitorProps) => {
     const router = useRouter();
     const searchParams = useSearchParams();
     // const consoleToken = searchParams.get('console_token')
-    const consoleTokenFromLocalStorage = localStorage?.getItem('token');
+    // const consoleTokenFromLocalStorage = localStorage?.getItem('token');
     const [init, setInit] = useState(false);
 
     useEffect(() => {

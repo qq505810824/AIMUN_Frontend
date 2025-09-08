@@ -1,5 +1,6 @@
 'use client';
 import { useAppContext } from '@/context/app-context';
+import { useLang } from '@/context/lang-context';
 import { GlobalStyles, Sheet } from '@mui/joy';
 import { Globe2 } from 'lucide-react';
 import { useRouter } from 'next-nprogress-bar';
@@ -17,6 +18,8 @@ interface ViewProps {
 export default function HeaderView(props: ViewProps) {
     const { title, section, setSection, links } = props;
 
+    const { lang, setLang, showBoth, setShowBoth, L } = useLang()
+
     const [isMenuOpen, setIsMenuOpen] = useState(false); // 移動端選單狀態
     const pathname = usePathname(); // 獲取當前路徑
 
@@ -32,7 +35,7 @@ export default function HeaderView(props: ViewProps) {
         router.push(section);
     };
 
-    const logout = async () => {};
+    const logout = async () => { };
 
     return (
         <>
@@ -111,10 +114,16 @@ export default function HeaderView(props: ViewProps) {
                                         className="px-3 py-2 rounded-xl hover:text-blue-600 hover:bg-gray-100"
                                         href={link.href}
                                     >
-                                        {link.label}
+                                        {L(link.labelEN, link.labelZH)}
                                     </Link>
                                 );
                             })}
+                            <button
+                                onClick={() => setLang(lang === 'en' ? 'zh' : 'en')}
+                                className="px-3 py-1.5 border rounded-lg text-sm"
+                            >
+                                {lang === 'en' ? '繁' : 'EN'}
+                            </button>
                         </nav>
                     </div>
 
@@ -146,10 +155,16 @@ export default function HeaderView(props: ViewProps) {
                                             setIsMenuOpen(false);
                                         }}
                                     >
-                                        {link.label}
+                                        {L(link.labelEN, link.labelZH)}
                                     </div>
                                 );
                             })}
+                            <button
+                                onClick={() => setLang(lang === 'en' ? 'zh' : 'en')}
+                                className="px-3 py-1.5 border rounded-lg text-xs"
+                            >
+                                {lang === 'en' ? '繁' : 'EN'}
+                            </button>
                         </div>
                     </div>
                 </header>

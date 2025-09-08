@@ -1,17 +1,16 @@
-import Loading from '@/app/components/base/loading';
-import Link from 'next/link';
+'use client'
 
-const Home = async () => {
+import Home from "./(commonLayout)/home/page";
+
+
+
+const Page = () => {
+
     return (
-        <div className="flex flex-col justify-center min-h-screen py-12 sm:px-6 lg:px-8">
-            <div className="sm:mx-auto sm:w-full sm:max-w-md">
-                <Loading type="area" />
-                <div className="mt-10 text-center">
-                    <Link href="/apps">🚀</Link>
-                </div>
-            </div>
+        <div >
+            <Home />
         </div>
-    );
+    )
 };
 
-export default Home;
+export default Page;
