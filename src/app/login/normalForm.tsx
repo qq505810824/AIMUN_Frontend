@@ -18,12 +18,12 @@ type IState = {
 
 type IAction = {
     type:
-    | 'login'
-    | 'login_failed'
-    | 'github_login'
-    | 'github_login_failed'
-    | 'google_login'
-    | 'google_login_failed';
+        | 'login'
+        | 'login_failed'
+        | 'github_login'
+        | 'github_login_failed'
+        | 'google_login'
+        | 'google_login_failed';
 };
 
 function reducer(state: IState, action: IAction) {
