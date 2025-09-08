@@ -18,7 +18,7 @@ interface ViewProps {
 export default function HeaderView(props: ViewProps) {
     const { title, section, setSection, links } = props;
 
-    const { lang, setLang, showBoth, setShowBoth, L } = useLang()
+    const { lang, setLang, showBoth, setShowBoth, L } = useLang();
 
     const [isMenuOpen, setIsMenuOpen] = useState(false); // 移動端選單狀態
     const pathname = usePathname(); // 獲取當前路徑
@@ -35,7 +35,7 @@ export default function HeaderView(props: ViewProps) {
         router.push(section);
     };
 
-    const logout = async () => { };
+    const logout = async () => {};
 
     return (
         <>

@@ -1,7 +1,7 @@
-'use client'
+'use client';
 
-import React from "react";
-import HeaderView from ".";
+import React from 'react';
+import HeaderView from '.';
 
 export default function HeaderSet() {
     const [section, setSection] = React.useState('dashboard');
@@ -13,18 +13,18 @@ export default function HeaderSet() {
         { id: 'schedule', labelEN: 'Schedule', labelZH: '日程', href: '/schedule' },
         { id: 'apply', labelEN: 'Apply', labelZH: '報名', href: '/apply' },
         { id: 'news', labelEN: 'News', labelZH: '消息', href: '/news' },
-        { id: 'contact', labelEN: 'Contact', labelZH: '聯絡', href: '/contact' },
+        { id: 'contact', labelEN: 'Contact', labelZH: '聯絡', href: '/contact' }
     ];
     return (
         <>
             <HeaderView
                 {...{
-                    title: 'AIAIMUN',
+                    title: 'AIMUN',
                     links,
                     section,
                     setSection
                 }}
             />
         </>
-    )
+    );
 }

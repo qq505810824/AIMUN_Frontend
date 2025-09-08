@@ -1,14 +1,14 @@
-'use client'
-import { Card, PhotoGrid, Section } from '@/app/components/common/Views/Blocks'
-import { useLang } from '@/context/lang-context'
+'use client';
+import { Card, PhotoGrid, Section } from '@/app/components/common/Views/Blocks';
+import { useLang } from '@/context/lang-context';
 
 const G2 = [
     'https://source.unsplash.com/featured/800x500/?united-nations,flag',
     'https://source.unsplash.com/featured/800x500/?workshop,education',
-    'https://source.unsplash.com/featured/800x500/?debate,public-speaking',
-]
+    'https://source.unsplash.com/featured/800x500/?debate,public-speaking'
+];
 export default function About() {
-    const { L } = useLang()
+    const { L } = useLang();
     return (
         <Section>
             <div className="grid md:grid-cols-2 gap-6">
@@ -26,5 +26,5 @@ export default function About() {
                 </Card>
             </div>
         </Section>
-    )
+    );
 }

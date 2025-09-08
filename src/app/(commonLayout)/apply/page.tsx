@@ -1,9 +1,9 @@
-'use client'
-import { Card, Section } from '@/app/components/common/Views/Blocks'
-import { useLang } from '@/context/lang-context'
+'use client';
+import { Card, Section } from '@/app/components/common/Views/Blocks';
+import { useLang } from '@/context/lang-context';
 
 export default function Apply() {
-    const { L } = useLang()
+    const { L } = useLang();
     return (
         <Section>
             <Card>
@@ -25,8 +25,8 @@ export default function Apply() {
                     <a
                         href="#"
                         onClick={(e) => {
-                            e.preventDefault()
-                            alert(L('Replace with Tencent Form link.', '請替換為騰訊問卷連結。'))
+                            e.preventDefault();
+                            alert(L('Replace with Tencent Form link.', '請替換為騰訊問卷連結。'));
                         }}
                         className="rounded-md border px-4 py-2 text-center"
                     >
@@ -35,5 +35,5 @@ export default function Apply() {
                 </div>
             </Card>
         </Section>
-    )
+    );
 }

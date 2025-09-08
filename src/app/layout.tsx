@@ -13,9 +13,9 @@ import './styles/globals.css';
 import './styles/markdown.scss';
 
 export const metadata = {
-    title: 'AI English — Learn Better with AI',
+    title: 'AIMUN',
     description:
-        'A next-generation platform for English writing, reading and speaking, powered by cutting-edge AI.'
+        'AIMUN'
 };
 
 export const viewport: Viewport = {
@@ -27,7 +27,6 @@ export const viewport: Viewport = {
 };
 
 const LocaleLayout = ({ children }: { children: React.ReactNode }) => {
-
     return (
         <html className="h-full">
             <head>
@@ -55,7 +54,7 @@ const LocaleLayout = ({ children }: { children: React.ReactNode }) => {
                             </LoadProvider>
                         </AppContextProvider>
                     </LangProvider>
-                </SwrInitor >
+                </SwrInitor>
             </body>
         </html>
     );
