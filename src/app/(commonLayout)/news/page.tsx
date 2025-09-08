@@ -52,16 +52,7 @@ export default function News() {
 
     useEffect(() => {
         let mounted = true;
-
         setItems(mock);
-
-        // fetch('/api/news')
-        //     .then((r) => {
-        //         if (!r.ok) throw new Error('Failed to load /api/news')
-        //         return r.json()
-        //     })
-        //     .then((data) => mounted && setItems(Array.isArray(data) ? data : mock))
-        //     .catch(() => mounted && (setItems(mock), setError('offline')))
         return () => {
             mounted = false;
         };
@@ -73,7 +64,7 @@ export default function News() {
                 <div className="flex items-center justify-between mb-4">
                     <h2 className="text-2xl font-bold">{L('Latest News', '最新消息')}</h2>
                 </div>
-                <div className="grid md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     {(items || []).map((n) => (
                         <article
                             key={n.id}
