@@ -1,49 +1,50 @@
 'use client';
 import { Card, Section } from '@/app/components/common/Views/Blocks';
 import { useLang } from '@/context/lang-context';
+import { useNewsData } from '@/hooks/useNewsData';
+import { NewsModel } from '@/models/NewsModel';
+import moment from 'moment';
 import { useEffect, useMemo, useState } from 'react';
-
-// 定义新闻项的类型
-interface NewsItem {
-    id: string;
-    date: string;
-    titleEN: string;
-    titleZH: string;
-    bodyEN?: string;
-    bodyZH?: string;
-    image?: string;
-}
 
 export default function News() {
     const { L } = useLang();
-    const [items, setItems] = useState<NewsItem[] | null>(null);
+    const [items, setItems] = useState<NewsModel[] | null>(null);
     const [error, setError] = useState<string | null>(null);
 
-    const mock = useMemo<NewsItem[]>(
+    const [filters, setFilters] = useState<any>({
+        order: 'updated_at'
+    });
+
+    const { data, isLoading, isError, mutate } = useNewsData({ ...filters });
+
+    const mock = useMemo<NewsModel[]>(
         () => [
             {
-                id: '1',
-                date: '2025-09-08',
-                titleEN: 'Conference Information Released',
-                titleZH: '會議資訊發布',
-                image: 'https://source.unsplash.com/featured/640x360/?announcement',
-                bodyEN: 'Key dates and venues confirmed.',
-                bodyZH: '關鍵日期與場地已確定。'
+                id: 1,
+                updated_at: '2025-09-08',
+                title: 'Conference Information Released',
+                title_zh: '會議資訊發布',
+                cover: 'https://source.unsplash.com/featured/640x360/?announcement',
+                description: 'Key dates and venues confirmed.',
+                description_zh: '關鍵日期與場地已確定。'
             },
             {
-                id: '2',
-                date: '2025-09-15',
-                titleEN: 'Committee Guides Coming Soon',
-                titleZH: '委員會指南即將發布',
-                bodyEN: 'Guides will be released in phases.',
-                bodyZH: '指南將分階段釋出。'
+                id: 2,
+                updated_at: '2025-09-15',
+                title: 'Committee Guides Coming Soon',
+                title_zh: '委員會指南即將發布',
+                cover: 'https://source.unsplash.com/featured/640x360/?announcement',
+                description: 'Guides will be released in phases.',
+                description_zh: '指南將分階段釋出。'
             },
             {
-                id: '3',
-                date: '2025-09-22',
-                titleEN: 'Highlight: AI Education Day',
-                titleZH: '亮點：AI 教育日',
-                image: 'https://source.unsplash.com/featured/640x360/?ai,education'
+                id: 3,
+                updated_at: '2025-09-22',
+                title: 'Highlight: AI Education Day',
+                title_zh: '亮點：AI 教育日',
+                cover: 'https://source.unsplash.com/featured/640x360/?ai,education',
+                description: 'Highlight.',
+                description_zh: 'Highlight'
             }
         ],
         []
@@ -71,26 +72,17 @@ export default function News() {
             <Card>
                 <div className="flex items-center justify-between mb-4">
                     <h2 className="text-2xl font-bold">{L('Latest News', '最新消息')}</h2>
-                    {error === 'offline' && (
-                        <span className="text-xs text-amber-600">
-                            {L(
-                                'Previewing mock data — add app/api/news/route.js to use your API.',
-                                '目前顯示範例數據 — 新增 app/api/news/route.js 以使用你的 API。'
-                            )}
-                        </span>
-                    )}
                 </div>
-
                 <div className="grid md:grid-cols-3 gap-4">
                     {(items || []).map((n) => (
                         <article
                             key={n.id}
                             className="rounded-xl border overflow-hidden flex flex-col"
                         >
-                            {n.image ? (
+                            {n.cover ? (
                                 <img
-                                    src={n.image}
-                                    alt={L(n.titleEN, n.titleZH).toString()}
+                                    src={n.cover}
+                                    alt={L(n.title, n.title_zh).toString()}
                                     className="w-full h-36 object-cover"
                                 />
                             ) : (
@@ -101,11 +93,13 @@ export default function News() {
                                 </div>
                             )}
                             <div className="p-4 flex-1 flex flex-col">
-                                <div className="text-xs text-slate-500 mb-1">{n.date}</div>
-                                <h3 className="font-semibold mb-2">{L(n.titleEN, n.titleZH)}</h3>
-                                {(n.bodyEN || n.bodyZH) && (
+                                <div className="text-xs text-slate-500 mb-1">
+                                    {moment(n.updated_at).format('YYYY-MM-DD HH:mm')}
+                                </div>
+                                <h3 className="font-semibold mb-2">{L(n.title, n.title_zh)}</h3>
+                                {(n.description || n.description_zh) && (
                                     <p className="text-sm text-slate-700 line-clamp-3">
-                                        {L(n.bodyEN || '', n.bodyZH || '')}
+                                        {L(n.description || '', n.description_zh || '')}
                                     </p>
                                 )}
                             </div>

@@ -1,13 +1,10 @@
 'use client';
 
-import type { User } from '@/models/common';
-
 import type { FC, ReactNode } from 'react';
-import { createRef, useRef, useState } from 'react';
+import { createRef, useRef } from 'react';
 import { createContext, useContext, useContextSelector } from 'use-context-selector';
 
 export type AppContextValue = {
-    userProfile?: User;
     pageContainerRef: React.RefObject<HTMLDivElement>;
     useSelector: typeof useSelector;
 };
@@ -23,17 +20,6 @@ const initialLangeniusVersionInfo = {
 };
 
 const AppContext = createContext<AppContextValue>({
-    userProfile: {
-        id: '',
-        nickname: '',
-        role: '',
-        email: '',
-        aienglish_feature_list: [],
-        meta: {},
-        school: undefined,
-        teaching_assignments: [],
-        enrollments: []
-    },
     pageContainerRef: createRef(),
     useSelector
 });
@@ -48,22 +34,10 @@ export type AppContextProviderProps = {
 
 export const AppContextProvider: FC<AppContextProviderProps> = ({ children }) => {
     const pageContainerRef = useRef<HTMLDivElement>(null);
-    const [userProfile, setUserProfile] = useState<User>({
-        id: '',
-        nickname: '',
-        email: '',
-        role: '',
-        aienglish_feature_list: [],
-        meta: {},
-        school: undefined,
-        teaching_assignments: [],
-        enrollments: []
-    });
 
     return (
         <AppContext.Provider
             value={{
-                userProfile,
                 pageContainerRef,
                 useSelector
             }}

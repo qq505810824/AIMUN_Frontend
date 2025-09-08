@@ -2,7 +2,6 @@
 import Button from '@/app/components/base/button';
 // import I18n from '@/context/i18n'; // Removed as per previous decision for English only
 import { login } from '@/service/common';
-import { requestPasswordReset } from '@/service/user'; // Changed path from common to user
 import { useRouter } from 'next/navigation';
 import { useReducer, useState } from 'react';
 // import { useTranslation } from 'react-i18next'; // Removed
@@ -19,12 +18,12 @@ type IState = {
 
 type IAction = {
     type:
-        | 'login'
-        | 'login_failed'
-        | 'github_login'
-        | 'github_login_failed'
-        | 'google_login'
-        | 'google_login_failed';
+    | 'login'
+    | 'login_failed'
+    | 'github_login'
+    | 'github_login_failed'
+    | 'google_login'
+    | 'google_login_failed';
 };
 
 function reducer(state: IState, action: IAction) {
@@ -145,7 +144,6 @@ const NormalForm = () => {
         }
         try {
             setIsLoading(true);
-            await requestPasswordReset(email); // Call the new service function
             Toast.notify({
                 type: 'info', // Using 'info' as it's a conditional success
                 message:

@@ -14,8 +14,7 @@ import './styles/markdown.scss';
 
 export const metadata = {
     title: 'AIMUN',
-    description:
-        'AIMUN'
+    description: 'AIMUN'
 };
 
 export const viewport: Viewport = {

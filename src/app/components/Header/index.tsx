@@ -1,5 +1,4 @@
 'use client';
-import { useAppContext } from '@/context/app-context';
 import { useLang } from '@/context/lang-context';
 import { GlobalStyles, Sheet } from '@mui/joy';
 import { Globe2 } from 'lucide-react';
@@ -22,11 +21,6 @@ export default function HeaderView(props: ViewProps) {
 
     const [isMenuOpen, setIsMenuOpen] = useState(false); // 移動端選單狀態
     const pathname = usePathname(); // 獲取當前路徑
-
-    const [selectedCommunity, setSelectedCommunity] = useState<any>(null);
-    const [showCommunityDropdown, setShowCommunityDropdown] = useState(false);
-    const [currentView, setCurrentView] = useState('dashboard');
-    const { userProfile } = useAppContext();
 
     const router = useRouter();
 

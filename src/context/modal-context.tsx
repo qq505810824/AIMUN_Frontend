@@ -2,7 +2,6 @@
 
 import Confirm from '@/app/components/base/confirm';
 import InputNameModal from '@/app/components/common/Widget/modals/InputNameModal';
-import type { ApiBasedExtension } from '@/models/common';
 import { BaseInputExtension } from '@/models/modals';
 import { useRouter, useSearchParams } from 'next/navigation';
 import type { Dispatch, SetStateAction } from 'react';
@@ -17,11 +16,9 @@ export type ModalState<T> = {
 };
 
 const ModalContext = createContext<{
-    setShowApiBasedExtensionModal: Dispatch<SetStateAction<ModalState<ApiBasedExtension> | null>>;
     setInputNameModal: Dispatch<SetStateAction<ModalState<BaseInputExtension> | null>>;
     setShowConfirmDelete: Dispatch<SetStateAction<ModalState<any> | null>>;
 }>({
-    setShowApiBasedExtensionModal: () => {},
     setInputNameModal: () => {},
     setShowConfirmDelete: () => {}
 });
@@ -32,8 +29,6 @@ type ModalContextProviderProps = {
     children: React.ReactNode;
 };
 export const ModalContextProvider = ({ children }: ModalContextProviderProps) => {
-    const [showApiBasedExtensionModal, setShowApiBasedExtensionModal] =
-        useState<ModalState<ApiBasedExtension> | null>(null);
     const [showConfirmDelete, setShowConfirmDelete] = useState<ModalState<any> | null>(null);
 
     const [showInputNameModal, setInputNameModal] = useState<ModalState<BaseInputExtension> | null>(
@@ -41,13 +36,6 @@ export const ModalContextProvider = ({ children }: ModalContextProviderProps) =>
     );
     const searchParams = useSearchParams();
     const router = useRouter();
-
-    const handleSaveApiBasedExtension = (newApiBasedExtension: ApiBasedExtension) => {
-        if (showApiBasedExtensionModal?.onSaveCallback)
-            showApiBasedExtensionModal.onSaveCallback(newApiBasedExtension);
-
-        setShowApiBasedExtensionModal(null);
-    };
 
     const handleSaveInputNameExtension = (newExtension: BaseInputExtension) => {
         if (showInputNameModal?.onSaveCallback) showInputNameModal.onSaveCallback(newExtension);
@@ -64,7 +52,6 @@ export const ModalContextProvider = ({ children }: ModalContextProviderProps) =>
     return (
         <ModalContext.Provider
             value={{
-                setShowApiBasedExtensionModal,
                 setInputNameModal,
                 setShowConfirmDelete
             }}

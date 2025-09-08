@@ -1,4 +1,4 @@
-import type { CommonResponse, LoginResponse, UserProfileResponse } from '@/models/common';
+import type { CommonResponse, LoginResponse } from '@/models/common';
 import type { Fetcher } from 'swr';
 import { del, get, post, put } from './base';
 
@@ -29,13 +29,6 @@ export const update_password: Fetcher<
     { url: string; body: Record<string, any> }
 > = ({ url, body }) => {
     return put(baseURL + url, { body });
-};
-
-export const get_info: Fetcher<
-    UserProfileResponse,
-    { url: string; params: Record<string, any> }
-> = ({ url, params }) => {
-    return get<UserProfileResponse>(baseURL + url, { params });
 };
 
 export const getTags: Fetcher<CommonResponse, { url: string; params: Record<string, any> }> = ({

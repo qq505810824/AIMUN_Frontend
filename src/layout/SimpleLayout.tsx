@@ -6,15 +6,12 @@ import Box from '@mui/joy/Box';
 import CssBaseline from '@mui/joy/CssBaseline';
 import { CssVarsProvider } from '@mui/joy/styles';
 
-import Sidebar from '@/app/components/Sidebar';
-
 function SimpleLayout(props: { children: React.ReactNode }) {
     return (
         <CssVarsProvider disableTransitionOnChange>
             <CssBaseline />
             <Box sx={{ display: 'flex', minHeight: '100dvh' }}>
                 {/* <Header /> */}
-                <Sidebar />
                 <Box
                     component="main"
                     className="MainContent"
