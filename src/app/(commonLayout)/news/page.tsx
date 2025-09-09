@@ -27,10 +27,9 @@ export default function News() {
         if (data) {
             console.log('data:', data);
             const allPosts = data?.records || [];
-            setItems(allPosts)
+            setItems(allPosts);
         }
     }, [data]);
-
 
     const mock = useMemo<NewsModel[]>(
         () => [
@@ -102,13 +101,14 @@ export default function News() {
                                 <div className="text-xs text-slate-500 mb-1">
                                     {moment(n.updated_at).format('YYYY-MM-DD')}
                                 </div>
-                                <h3 className="font-semibold mb-2 line-clamp-2">{L(n.title, n.title_zh)}</h3>
+                                <h3 className="font-semibold mb-2 line-clamp-2">
+                                    {L(n.title, n.title_zh)}
+                                </h3>
                                 {(n.description || n.description_zh) && (
                                     <p className="text-sm text-slate-700 line-clamp-3">
-                                        {L(n.description || '', n.description_zh || '')}
+                                        {L(n.description && n.description.replace(/<[^>]*>/g, '') || '', n.description_zh && n.description_zh.replace(/<[^>]*>/g, '') || '')}
                                     </p>
                                 )}
-
                                 {/* <PostBody content={L(n.description || '', n.description_zh || '')} /> */}
                             </div>
                         </article>
