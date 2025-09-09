@@ -1,21 +1,36 @@
 'use client';
 import { Card, Section } from '@/app/components/common/Views/Blocks';
 import { useLang } from '@/context/lang-context';
-import { useNewsData } from '@/hooks/useNewsData';
 import { NewsModel } from '@/models/NewsModel';
 import moment from 'moment';
 import { useEffect, useMemo, useState } from 'react';
+import useSWR from 'swr';
 
 export default function News() {
     const { L } = useLang();
     const [items, setItems] = useState<NewsModel[] | null>(null);
-    const [error, setError] = useState<string | null>(null);
 
     const [filters, setFilters] = useState<any>({
         order: 'updated_at'
     });
 
-    const { data, isLoading, isError, mutate } = useNewsData({ ...filters });
+    // const { data, isLoading, isError, mutate } = useNewsData({ ...filters });
+
+    const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
+    const { data, error, isLoading } = useSWR(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/tables/${process.env.NEXT_PUBLIC_TABLE_NEWS_ID}/list_records`,
+        fetcher
+    );
+
+    useEffect(() => {
+        if (data) {
+            console.log('data:', data);
+            const allPosts = data?.records || [];
+            setItems(allPosts)
+        }
+    }, [data]);
+
 
     const mock = useMemo<NewsModel[]>(
         () => [
@@ -52,7 +67,7 @@ export default function News() {
 
     useEffect(() => {
         let mounted = true;
-        setItems(mock);
+        // setItems(mock);
         return () => {
             mounted = false;
         };
@@ -74,25 +89,27 @@ export default function News() {
                                 <img
                                     src={n.cover}
                                     alt={L(n.title, n.title_zh).toString()}
-                                    className="w-full h-36 object-cover"
+                                    className="w-full h-60 object-cover"
                                 />
                             ) : (
-                                <div className="w-full h-36 bg-gradient-to-br from-slate-200 to-slate-100 flex items-center justify-center">
-                                    <span className="text-slate-500 text-sm">
-                                        {L('Text Update', '文字更新')}
+                                <div className="w-full h-60 bg-gradient-to-br from-slate-200 to-slate-100 flex items-center justify-center">
+                                    <span className="h-60 text-slate-500 text-sm">
+                                        {L(' ', ' ')}
                                     </span>
                                 </div>
                             )}
                             <div className="p-4 flex-1 flex flex-col">
                                 <div className="text-xs text-slate-500 mb-1">
-                                    {moment(n.updated_at).format('YYYY-MM-DD HH:mm')}
+                                    {moment(n.updated_at).format('YYYY-MM-DD')}
                                 </div>
-                                <h3 className="font-semibold mb-2">{L(n.title, n.title_zh)}</h3>
+                                <h3 className="font-semibold mb-2 line-clamp-2">{L(n.title, n.title_zh)}</h3>
                                 {(n.description || n.description_zh) && (
                                     <p className="text-sm text-slate-700 line-clamp-3">
                                         {L(n.description || '', n.description_zh || '')}
                                     </p>
                                 )}
+
+                                {/* <PostBody content={L(n.description || '', n.description_zh || '')} /> */}
                             </div>
                         </article>
                     ))}
