@@ -1,11 +1,18 @@
 'use client';
 import News from '@/app/(commonLayout)/news/page';
+import About from '@/app/components/about';
+import { Contact } from '@/app/components/contact';
+import { Footer } from '@/app/components/Footer';
+import { HeaderView } from '@/app/components/Header';
+import { Hero } from '@/app/components/Hero';
+import { Highlights } from '@/app/components/highlights';
+import EventCard from '@/app/components/home/EventCard';
+import VenueCard from '@/app/components/home/VenueCard';
+import { Register } from '@/app/components/register';
 import { useLang } from '@/context/lang-context';
-import { Mail } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 
 export default function App() {
-    // const [lang, setLang] = useState<LangKey>('en');
     const [tab, setTab] = useState('home');
     const [aboutTab, setAboutTab] = useState('sef');
     const [isMenuOpen, setIsMenuOpen] = useState(false); // 添加移动端菜单状态
@@ -43,123 +50,8 @@ export default function App() {
 
     return (
         <div className="min-h-screen bg-slate-50 text-slate-900">
-            <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
-                <nav className="mx-auto max-w-7xl px-4 py-3 flex justify-between">
-                    <div className="flex flex-row items-center">
-                        {/* 移动端菜单按钮 */}
-                        <button
-                            id="menu-button"
-                            onClick={(e) => {
-                                e.stopPropagation(); // 阻止事件冒泡
-                                setIsMenuOpen(!isMenuOpen);
-                            }}
-                            className="md:hidden mr-4 p-2 rounded-md text-slate-700 hover:bg-slate-100 focus:outline-none"
-                            aria-label="Toggle menu"
-                            aria-expanded={isMenuOpen}
-                        >
-                            {isMenuOpen ? (
-                                <svg
-                                    className="h-5 w-5"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M6 18L18 6M6 6l12 12"
-                                    />
-                                </svg>
-                            ) : (
-                                <svg
-                                    className="h-5 w-5"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth={2}
-                                        d="M4 6h16M4 12h16M4 18h16"
-                                    />
-                                </svg>
-                            )}
-                        </button>
 
-                        {/* 桌面端导航列表 - 在移动端隐藏 */}
-                        <ul className="hidden md:flex flex-wrap gap-2">
-                            {[
-                                { id: 'home', label: T.nav.home },
-                                { id: 'about', label: T.nav.about },
-                                { id: 'highlights', label: T.nav.highlights },
-                                { id: 'news', label: T.nav.news },
-                                { id: 'register', label: T.nav.register },
-                                { id: 'contact', label: T.nav.contact }
-                            ].map((item) => (
-                                <li key={item.id}>
-                                    <button
-                                        onClick={() => {
-                                            setTab(item.id);
-                                            setIsMenuOpen(false); // 关闭移动端菜单
-                                        }}
-                                        className={`px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 ${tab === item.id ? 'bg-slate-900 text-white hover:bg-slate-900' : ''}`}
-                                    >
-                                        {item.label}
-                                    </button>
-                                </li>
-                            ))}
-                        </ul>
-
-                        {/* 移动端导航列表 - 在桌面端隐藏 */}
-                        {isMenuOpen && (
-                            <div
-                                id="mobile-menu"
-                                className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-slate-200 shadow-lg z-50"
-                            >
-                                <ul className="flex flex-col py-2">
-                                    {[
-                                        { id: 'home', label: T.nav.home },
-                                        { id: 'about', label: T.nav.about },
-                                        { id: 'highlights', label: T.nav.highlights },
-                                        { id: 'news', label: T.nav.news },
-                                        { id: 'register', label: T.nav.register },
-                                        { id: 'contact', label: T.nav.contact }
-                                    ].map((item) => (
-                                        <li key={item.id}>
-                                            <button
-                                                onClick={() => {
-                                                    setTab(item.id);
-                                                    setIsMenuOpen(false); // 点击后关闭菜单
-                                                }}
-                                                className={`w-full text-left px-4 py-3 text-sm font-medium hover:bg-slate-100 ${tab === item.id ? 'bg-slate-900 text-white hover:bg-slate-900' : ''}`}
-                                            >
-                                                {item.label}
-                                            </button>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        )}
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                        <LangSwitcher lang={lang} setLang={setLang} />
-                        <a
-                            href="#register"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                setTab('register');
-                                setIsMenuOpen(false); // 关闭移动端菜单
-                            }}
-                            className="ml-3 inline-flex items-center gap-2 rounded-xl bg-blue-600 px-2 py-1 sm:px-3 sm:py-2 text-xs sm:text-sm text-white hover:bg-blue-700 shadow"
-                        >
-                            {T.ctaRegister}
-                        </a>
-                    </div>
-                </nav>
-            </header>
+            <HeaderView T={T} section={tab} setSection={setTab} />
 
             {tab === 'home' && (
                 <Home
@@ -179,35 +71,12 @@ export default function App() {
             {tab === 'about' && (
                 <About lang={lang} T={T} aboutTab={aboutTab} setAboutTab={setAboutTab} />
             )}
-            {tab === 'highlights' && <Highlights T={T} />}
-            {tab === 'register' && <Register T={T} />}
-            {tab === 'contact' && <Contact T={T} />}
+            {tab === 'highlights' && <Highlights lang={lang} T={T} />}
+            {tab === 'register' && <Register lang={lang} T={T} />}
+            {tab === 'contact' && <Contact lang={lang} T={T} />}
             {tab === 'news' && <News />}
 
-            <footer className="mt-16 border-t border-slate-200">
-                <div className="mx-auto max-w-7xl px-4 py-10 text-sm text-slate-500 flex flex-col md:flex-row items-center md:justify-between gap-4">
-                    <p>
-                        © 2025 AIMUN · Macau International Model United Nations Youth Association
-                    </p>
-                    <p className="opacity-75">Wynn Palace • UNU Macau</p>
-                </div>
-            </footer>
-        </div>
-    );
-}
-
-function LangSwitcher({ lang, setLang }: { lang: LangKey; setLang: (l: LangKey) => void }) {
-    return (
-        <div className="inline-flex rounded-xl border border-slate-300 bg-white overflow-hidden">
-            {['en', 'zh'].map((l) => (
-                <button
-                    key={l}
-                    onClick={() => setLang(l as LangKey)}
-                    className={`px-3 py-1 text-sm ${lang === l ? 'bg-slate-900 text-white' : 'hover:bg-slate-100'}`}
-                >
-                    {l === 'en' ? 'EN' : '繁體'}
-                </button>
-            ))}
+            <Footer />
         </div>
     );
 }
@@ -228,49 +97,7 @@ function Home({
     return (
         <main>
             {/* HERO */}
-            <section className="relative">
-                <img
-                    src="./archive/59831757665060_.pic_hd.jpg"
-                    alt="Macau skyline"
-                    className="h-[70vh] w-full object-cover"
-                />
-                <div className="bg-gray-100"></div>
-                <div className="absolute inset-0 bg-slate-900/50" />
-                <div className="absolute inset-0 flex items-center">
-                    <div className="mx-auto max-w-7xl px-4 pt-0 sm:pt-0">
-                        <div className="max-w-3xl text-white">
-                            <p className="mb-2 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs backdrop-blur">
-                                <span>Oct 24–26, 2025</span>
-                                <span className="opacity-60">•</span>
-                                <span>Macau SAR</span>
-                            </p>
-                            <h1 className="text-3xl md:text-5xl font-extrabold leading-tight">
-                                {T.hero.title}
-                            </h1>
-                            <p className="mt-4 text-slate-100/90 text-lg md:text-xl">
-                                {T.hero.subtitle}
-                            </p>
-                            <div className="mt-6 flex flex-wrap items-center gap-3">
-                                <button
-                                    onClick={goRegister}
-                                    className="rounded-xl bg-blue-600 px-5 py-3 text-white font-semibold hover:bg-blue-700 shadow"
-                                >
-                                    {T.ctaRegister}
-                                </button>
-                                <button
-                                    onClick={() => {
-                                        goAbout();
-                                        setAboutTab('sef');
-                                    }}
-                                    className="rounded-xl border border-white/40 px-5 py-3 text-white hover:bg-white/10"
-                                >
-                                    {T.ctaLearnMore}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <Hero T={T} goRegister={goRegister} goAbout={goAbout} setAboutTab={setAboutTab} />
 
             {/* THREE EVENTS (pretty cards with photos) */}
             <section className="mx-auto max-w-7xl px-4 py-12">
@@ -367,413 +194,9 @@ function Home({
     );
 }
 
-function EventCard({
-    img,
-    tag,
-    title,
-    desc,
-    onClick
-}: {
-    img: string;
-    tag: string;
-    title: string;
-    desc: string;
-    onClick: () => void;
-}) {
-    return (
-        <button
-            onClick={onClick}
-            className="text-left group overflow-hidden rounded-2xl bg-white border border-slate-200 shadow-sm"
-        >
-            <div className="relative">
-                <img
-                    src={img}
-                    alt={title}
-                    className="h-44 w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                />
-                <div className="absolute top-3 left-3 inline-flex items-center gap-2 rounded-full bg-slate-900/90 text-white px-3 py-1 text-xs">
-                    {tag}
-                </div>
-            </div>
-            <div className="p-5">
-                <h3 className="text-lg font-semibold">{title}</h3>
-                <p className="mt-1 text-slate-600 text-sm">{desc}</p>
-                <span className="mt-3 inline-block text-blue-700 text-sm">Learn more →</span>
-            </div>
-        </button>
-    );
-}
-
-function VenueCard({ title, subtitle, img }: { title: string; subtitle: string; img: string }) {
-    return (
-        <div className="overflow-hidden rounded-2xl bg-white border border-slate-200 shadow-sm">
-            <img src={img} alt={title} className="h-48 w-full object-cover" />
-            <div className="p-5">
-                <h3 className="text-lg font-semibold">{title}</h3>
-                <p className="text-slate-600">{subtitle}</p>
-            </div>
-        </div>
-    );
-}
-
-function About({
-    lang,
-    T,
-    aboutTab,
-    setAboutTab
-}: {
-    lang: LangKey;
-    T: any;
-    aboutTab: string;
-    setAboutTab: (tab: string) => void;
-}) {
-    return (
-        <main className="mx-auto max-w-7xl px-4 py-12">
-            <h2 className="text-2xl md:text-3xl font-extrabold">{T.about.title}</h2>
-            <p className="mt-2 text-slate-600 max-w-3xl">{T.about.lead}</p>
-
-            <div className="mt-6 inline-flex rounded-xl border border-slate-300 bg-white overflow-hidden">
-                {[
-                    { id: 'sef', label: T.about.tabs.sef },
-                    { id: 'aimun', label: T.about.tabs.aimun },
-                    { id: 'un', label: T.about.tabs.un }
-                ].map((t) => (
-                    <button
-                        key={t.id}
-                        onClick={() => setAboutTab(t.id)}
-                        className={`px-4 py-2 text-sm ${aboutTab === t.id ? 'bg-slate-900 text-white' : 'hover:bg-slate-100'}`}
-                    >
-                        {t.label}
-                    </button>
-                ))}
-            </div>
-
-            <div className="mt-6 grid md:grid-cols-2 gap-6">
-                {aboutTab === 'sef' && (
-                    <>
-                        <AboutCard
-                            img="./archive/59851757665119_.pic_hd.jpg"
-                            title={T.about.sef.title}
-                            description={T.about.sef.description}
-                            tag={T.about.tabs.sef}
-                        />
-                        <AboutInfo title={T.about.sef.infoTitle} lines={T.about.sef.info} points_title={T.about.un.points_title} points={T.about.sef.points} />
-                    </>
-                )}
-                {aboutTab === 'aimun' && (
-                    <>
-                        <AboutCard
-                            img="./archive/model_un_landing_page.jpg"
-                            title={T.about.aimun.title}
-                            description={T.about.aimun.description}
-                            tag={T.about.tabs.aimun}
-                        />
-                        <AboutInfo title={T.about.aimun.infoTitle} lines={T.about.aimun.info} points_title={T.about.un.points_title} points={T.about.aimun.points} />
-                    </>
-                )}
-                {aboutTab === 'un' && (
-                    <>
-                        <AboutCard
-                            img="./archive/UN-75-tile700x400.jpg"
-                            title={T.about.un.title}
-                            description={T.about.un.description}
-                            tag={T.about.tabs.un}
-                        />
-                        <AboutInfo title={T.about.un.infoTitle} lines={T.about.un.info} points_title={T.about.un.points_title} points={T.about.un.points} />
-                    </>
-                )}
-            </div>
-        </main>
-    );
-}
-
-function AboutCard({
-    img,
-    title,
-    description,
-    tag
-}: {
-    img: string;
-    title: string;
-    description: string;
-    tag: string;
-}) {
-    return (
-        <div className="overflow-hidden rounded-2xl bg-white border border-slate-200 shadow-sm">
-            <img src={img} alt={title} className="h-56 w-full object-cover" />
-            <div className="p-6">
-                <div className="inline-flex items-center gap-2 rounded-full bg-slate-900 text-white px-3 py-1 text-xs">
-                    {tag}
-                </div>
-                <h3 className="mt-3 text-xl font-semibold">{title}</h3>
-                <h5 className="mt-3 space-y-2 text-slate-700 list-disc">
-                    {description}
-                </h5>
-            </div>
-        </div>
-    );
-}
-
-function AboutInfo({ title, lines, points_title, points }: { title: string; lines: string[]; points_title: string, points: string[] }) {
-    return (
-        <div className="rounded-2xl bg-white border border-slate-200 shadow-sm p-6">
-            <h4 className="text-lg font-semibold">{title}</h4>
-            <div className="mt-3 space-y-1 text-slate-700">
-                {lines.map((l: string, idx: number) => (
-                    <p key={idx}>• {l}</p>
-                ))}
-            </div>
-
-            <div className='mt-6'>
-                <h4 className="text-lg font-semibold">{points_title}</h4>
-                <div className="mt-3 space-y-1 text-slate-700">
-                    {points?.map((b: string, idx: number) => (
-                        <p key={idx}>• {b}</p>
-                    ))}
-                </div>
-            </div>
-        </div>
-    );
-}
-
-function Highlights({ T }: { T: any }) {
-    const cards = T.highlights.cards;
-    return (
-        <main className="mx-auto max-w-7xl px-4 py-12">
-            <h2 className="text-2xl md:text-3xl font-extrabold">{T.nav.highlights}</h2>
-            <p className="mt-2 text-slate-600 max-w-3xl">{T.highlights.lead}</p>
-            <div className="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {cards.map((c: any, i: number) => (
-                    <div
-                        key={i}
-                        className="overflow-hidden rounded-2xl bg-white border border-slate-200 shadow-sm"
-                    >
-                        <img src={c.img} alt={c.t} className="h-44 w-full object-cover" />
-                        <div className="p-5">
-                            <h3 className="text-lg font-semibold">{c.t}</h3>
-                            <p className="mt-1 text-slate-600">{c.d}</p>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </main>
-    );
-}
-
-function Register({ T }: { T: any }) {
-    return (
-        <main id="register" className="mx-auto max-w-7xl px-4 py-12">
-            <div className="flex justify-between items-center">
-                <div>
-                    <h2 className="text-2xl md:text-3xl font-extrabold">{T.nav.register}</h2>
-                    <p className="mt-2 text-slate-600 max-w-3xl">{T.register.lead}</p>
-                </div>
-                <a
-                    href="#"
-                    className="rounded-xl border text-slate-700  text-sm border-slate-300 px-4 py-1 hover:bg-slate-100"
-                >
-                    {T.register.viewDetail}
-                </a>
-            </div>
-
-            <div className="mt-6 grid md:grid-cols-2 gap-6">
-                <div className="rounded-2xl bg-white border border-slate-200 shadow-sm p-6">
-                    <h3 className="text-xl font-semibold">{T.register.educators.title}</h3>
-                    <ul className="mt-3 space-y-1 text-slate-700 list-disc pl-5">
-                        {T.register.educators.items.map((x: string, i: number) => (
-                            <li key={i}>{x}</li>
-                        ))}
-                    </ul>
-                    <div className="mt-4 flex gap-3">
-                        <a
-                            href="#"
-                            className="rounded-xl bg-blue-600 text-white px-4 py-2 hover:bg-blue-700"
-                        >
-                            {T.register.btnIndividual}
-                        </a>
-                        <a
-                            href="#"
-                            className="rounded-xl border border-slate-300 px-4 py-2 hover:bg-slate-100"
-                        >
-                            {T.register.btnGroup}
-                        </a>
-                    </div>
-                </div>
-
-                <div className="rounded-2xl bg-white border border-slate-200 shadow-sm p-6">
-                    <h3 className="text-xl font-semibold">{T.register.students.title}</h3>
-                    <ul className="mt-3 space-y-1 text-slate-700 list-disc pl-5">
-                        {T.register.students.items.map((x: string, i: number) => (
-                            <li key={i}>{x}</li>
-                        ))}
-                    </ul>
-                    <div className="mt-4 flex gap-3">
-                        <a
-                            href="#"
-                            className="rounded-xl bg-emerald-600 text-white px-4 py-2 hover:bg-emerald-700"
-                        >
-                            {T.register.btnIndividual}
-                        </a>
-                        <a
-                            href="#"
-                            className="rounded-xl border border-slate-300 px-4 py-2 hover:bg-slate-100"
-                        >
-                            {T.register.btnGroup}
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div className="mt-6 rounded-2xl bg-white border border-slate-200 shadow-sm p-6">
-                <h4 className="text-lg font-semibold">{T.register.addons.title}</h4>
-                <ul className="mt-2 space-y-1 text-slate-700 list-disc pl-5">
-                    {T.register.addons.items.map((x: string, i: number) => (
-                        <li key={i}>{x}</li>
-                    ))}
-                </ul>
-            </div>
-        </main>
-    );
-}
-
-function Contact({ T }: { T: any }) {
-    const [sent, setSent] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const [err, setErr] = useState('');
-
-    async function onSubmit(e: any) {
-        e.preventDefault();
-        setLoading(true);
-        setErr('');
-
-        const form = new FormData(e.currentTarget);
-        const payload = Object.fromEntries(form.entries());
-
-        try {
-            const res = await fetch('/api/contact', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-            if (!res.ok) {
-                const data = await res.json().catch(() => ({}));
-                throw new Error(data?.error || 'Failed to send message.');
-            }
-            setSent(true);
-            e.currentTarget.reset();
-        } catch (error: any) {
-            setErr(error.message || 'Something went wrong.');
-        } finally {
-            setLoading(false);
-        }
-    }
-
-    return (
-        <main className="mx-auto max-w-7xl px-4 py-12">
-            <h2 className="text-2xl md:text-3xl font-extrabold">{T.nav.contact}</h2>
-            <div className="mt-4 grid md:grid-cols-2 gap-6">
-                <div className="rounded-2xl bg-white border border-slate-200 shadow-sm p-6">
-                    <dl className="space-y-2 text-slate-700">
-                        <div>
-                            <dt className="font-semibold">Email</dt>
-                            <dd>aimun@moimun.org</dd>
-                        </div>
-                        <div>
-                            <dt className="font-semibold">WhatsApp</dt>
-                            <dd>+852 4410 6234</dd>
-                        </div>
-                        <div>
-                            <dt className="font-semibold">Phone</dt>
-                            <dd>+853 6687 0988</dd>
-                        </div>
-                    </dl>
-                </div>
-                <div className="overflow-hidden rounded-2xl bg-white border p-4 border-slate-200 shadow-sm">
-                    <h1 className="text-2xl font-extrabold">Contact Us</h1>
-                    <p className="mt-2 text-gray-700">
-                        Tell us a bit about you and we’ll reach out to schedule a demo.
-                    </p>
-                    {!sent ? (
-                        <form onSubmit={onSubmit} className="mt-8 grid gap-4 max-w-3xl">
-                            <div className="grid md:grid-cols-2 gap-4">
-                                <input
-                                    name="name"
-                                    required
-                                    placeholder="Full name"
-                                    className="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                />
-                                <input
-                                    name="email"
-                                    type="email"
-                                    required
-                                    placeholder="Email"
-                                    className="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                />
-                            </div>
-
-                            <div className="grid md:grid-cols-2 gap-4">
-                                <input
-                                    name="organization"
-                                    placeholder="Organization"
-                                    className="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                />
-                                <input
-                                    name="location"
-                                    placeholder="Location"
-                                    className="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                />
-                            </div>
-
-                            <input
-                                name="whatsapp"
-                                placeholder="WhatsApp (Optional)"
-                                className="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            />
-
-                            <textarea
-                                name="message"
-                                rows={6}
-                                required
-                                placeholder="What would you like to achieve with AI English?"
-                                className="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            ></textarea>
-
-                            {err && (
-                                <div className="p-3 text-sm rounded-xl border border-red-200 bg-red-50 text-red-700">
-                                    {err}
-                                </div>
-                            )}
-
-                            <button
-                                type="submit"
-                                disabled={loading}
-                                className="inline-flex items-center gap-2 justify-center px-6 py-3 rounded-2xl bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50"
-                            >
-                                <Mail className="h-4 w-4" />{' '}
-                                {loading ? 'Sending...' : 'Send Message'}
-                            </button>
-                        </form>
-                    ) : (
-                        <div className="mt-8 p-6 bg-green-50 border border-green-200 rounded-xl max-w-3xl">
-                            Thanks! Your message has been sent.
-                        </div>
-                    )}
-                </div>
-            </div>
-        </main>
-    );
-}
-
-// ICONS for quick facts
-const icons = [
-    'https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=200&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=200&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1483721310020-03333e577078?q=80&w=200&auto=format&fit=crop'
-];
-
 // ------------------ COPY: Translations ------------------
 
-type LangKey = 'en' | 'zh';
+export type LangKey = 'en' | 'zh';
 
 const translations: Record<LangKey, any> = {
     en: {
@@ -825,29 +248,6 @@ const translations: Record<LangKey, any> = {
                     }
                 ]
             },
-            glance: {
-                title: 'At a Glance',
-                items: [
-                    {
-                        date: 'Oct 24',
-                        title: 'Opening & AI Education Program',
-                        desc: 'UNU milestone sessions, industry keynotes, youth incubation.',
-                        img: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1600&auto=format&fit=crop'
-                    },
-                    {
-                        date: 'Oct 25',
-                        title: 'SEF + AIMUN Day',
-                        desc: 'High-level plenary, forum tracks, committee sessions, gala dinner.',
-                        img: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1600&auto=format&fit=crop'
-                    },
-                    {
-                        date: 'Oct 26',
-                        title: 'Committees & UNU Visit',
-                        desc: 'Final debates, heritage study, visit UNU Macau, closing ceremony.',
-                        img: 'https://images.unsplash.com/photo-1518600506278-4e8ef466b810?q=80&w=1600&auto=format&fit=crop'
-                    }
-                ]
-            },
             venues: { title: 'Venues' },
             speakers: {
                 title: 'Featured Speakers',
@@ -869,25 +269,7 @@ const translations: Record<LangKey, any> = {
                     }
                 ]
             },
-            packages: {
-                title: 'Packages Snapshot',
-                educators: {
-                    title: 'For Principals & Educators (SEF)',
-                    items: [
-                        'Package A — General Pass: Forum access + luncheon',
-                        'Package B — Full Pass: Includes educational field visit (Oct 26)',
-                        'Add-on: UNESCO Chair in AI workshop (by request)'
-                    ]
-                },
-                students: {
-                    title: 'For Students (AIMUN & UN Experience Day)',
-                    items: [
-                        'UN Experience Day — Full Pass',
-                        'MUN — General Pass / Full Pass',
-                        'Add-ons: Residential package, 2-week Leadership Camp (Oct 6–17)'
-                    ]
-                }
-            },
+
             organizers: { title: 'Organizers & Partners' }
         },
         about: {
@@ -1038,29 +420,6 @@ const translations: Record<LangKey, any> = {
                     { t: '聯合國體驗日', d: '10–25歲學生：SDG 工作坊、文化探索、聯合國互動。' }
                 ]
             },
-            glance: {
-                title: '重點行程',
-                items: [
-                    {
-                        date: '10/24',
-                        title: '開幕 & AI 教育日程',
-                        desc: 'UNU 里程碑活動、產業主題演講、青年孵化。',
-                        img: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1600&auto=format&fit=crop'
-                    },
-                    {
-                        date: '10/25',
-                        title: '論壇 + 模聯日',
-                        desc: '高層全體會議、論壇分場、委員會辯論、晚宴。',
-                        img: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1600&auto=format&fit=crop'
-                    },
-                    {
-                        date: '10/26',
-                        title: '委員會 & 參訪',
-                        desc: '決議辯論、文化研學、參訪 UNU、閉幕典禮。',
-                        img: 'https://images.unsplash.com/photo-1518600506278-4e8ef466b810?q=80&w=1600&auto=format&fit=crop'
-                    }
-                ]
-            },
             venues: { title: '活動場地' },
             speakers: {
                 title: '重點講者',
@@ -1081,25 +440,6 @@ const translations: Record<LangKey, any> = {
                         img: './speakers/Cecilia.png'
                     }
                 ]
-            },
-            packages: {
-                title: '方案速覽',
-                educators: {
-                    title: '教育者（SEF）',
-                    items: [
-                        'A 方案：General Pass（論壇 + 午宴）',
-                        'B 方案：Full Pass（含 10/26 教育參訪）',
-                        '加購：UNESCO AI 講席工作坊（按需）'
-                    ]
-                },
-                students: {
-                    title: '學生（AIMUN & UN 體驗日）',
-                    items: [
-                        'UN Experience Day — Full Pass',
-                        'MUN — General Pass / Full Pass',
-                        '加購：住宿方案、2 週領袖營（10/6–17）'
-                    ]
-                }
             },
             organizers: { title: '主辦與夥伴' }
         },

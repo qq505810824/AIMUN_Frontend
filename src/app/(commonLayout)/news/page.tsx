@@ -2,7 +2,7 @@
 import { useLang } from '@/context/lang-context';
 import { NewsModel } from '@/models/NewsModel';
 import moment from 'moment';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 
 export default function News() {
@@ -25,52 +25,10 @@ export default function News() {
 
     useEffect(() => {
         if (data) {
-            console.log('data:', data);
             const allPosts = data?.records || [];
             setItems(allPosts);
         }
     }, [data]);
-
-    const mock = useMemo<NewsModel[]>(
-        () => [
-            {
-                id: 1,
-                updated_at: '2025-09-08',
-                title: 'Conference Information Released',
-                title_zh: '會議資訊發布',
-                cover: 'https://source.unsplash.com/featured/640x360/?announcement',
-                description: 'Key dates and venues confirmed.',
-                description_zh: '關鍵日期與場地已確定。'
-            },
-            {
-                id: 2,
-                updated_at: '2025-09-15',
-                title: 'Committee Guides Coming Soon',
-                title_zh: '委員會指南即將發布',
-                cover: 'https://source.unsplash.com/featured/640x360/?announcement',
-                description: 'Guides will be released in phases.',
-                description_zh: '指南將分階段釋出。'
-            },
-            {
-                id: 3,
-                updated_at: '2025-09-22',
-                title: 'Highlight: AI Education Day',
-                title_zh: '亮點：AI 教育日',
-                cover: 'https://source.unsplash.com/featured/640x360/?ai,education',
-                description: 'Highlight.',
-                description_zh: 'Highlight'
-            }
-        ],
-        []
-    );
-
-    useEffect(() => {
-        let mounted = true;
-        // setItems(mock);
-        return () => {
-            mounted = false;
-        };
-    }, [mock]);
 
     return (
         <main className="mx-auto max-w-7xl px-4 py-12">
