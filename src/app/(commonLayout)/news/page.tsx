@@ -75,7 +75,8 @@ export default function News() {
     return (
         <main className="mx-auto max-w-7xl px-4 py-12">
             <div className="flex items-center justify-between mb-4">
-                <h2 className="text-2xl font-bold">{L('News', '最新消息')}</h2>
+                <h2 className="text-2xl md:text-3xl font-extrabold">{L('News', '最新消息')}</h2>
+                {/* <p className="mt-2 text-slate-600 max-w-3xl">{T.about.lead}</p>  */}
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {(items || []).map((n) => (
@@ -102,10 +103,10 @@ export default function News() {
                                 <p className="text-sm text-slate-700 line-clamp-3">
                                     {L(
                                         (n.description && n.description.replace(/<[^>]*>/g, '')) ||
-                                            '',
+                                        '',
                                         (n.description_zh &&
                                             n.description_zh.replace(/<[^>]*>/g, '')) ||
-                                            ''
+                                        ''
                                     )}
                                 </p>
                             )}

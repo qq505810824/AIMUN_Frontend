@@ -21,9 +21,13 @@ export default function App() {
             const menu = document.getElementById('mobile-menu');
             const button = document.getElementById('menu-button');
 
-            if (isMenuOpen && menu && button &&
+            if (
+                isMenuOpen &&
+                menu &&
+                button &&
                 !menu.contains(e.target as Node) &&
-                !button.contains(e.target as Node)) {
+                !button.contains(e.target as Node)
+            ) {
                 setIsMenuOpen(false);
             }
         };
@@ -54,12 +58,32 @@ export default function App() {
                             aria-expanded={isMenuOpen}
                         >
                             {isMenuOpen ? (
-                                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                <svg
+                                    className="h-5 w-5"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M6 18L18 6M6 6l12 12"
+                                    />
                                 </svg>
                             ) : (
-                                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                                <svg
+                                    className="h-5 w-5"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M4 6h16M4 12h16M4 18h16"
+                                    />
                                 </svg>
                             )}
                         </button>
@@ -943,7 +967,7 @@ const translations: Record<LangKey, any> = {
             lead: 'Choose your path and secure your spot. Early-bird deadline: Sep 25, 2025.',
             btnIndividual: 'Individual',
             btnGroup: 'Group / School',
-            viewDetail: 'view detailed packages',
+            viewDetail: 'View detailed packages',
             educators: {
                 title: 'For Principals & Educators (SEF)',
                 items: [
@@ -974,11 +998,11 @@ const translations: Record<LangKey, any> = {
         ctaLearnMore: '了解更多',
         nav: {
             home: '首頁',
-            about: '關於我们',
+            about: '關於我們',
             highlights: '活動亮點',
             news: '最新消息', // placehold
             register: '立即報名',
-            contact: '聯絡我们'
+            contact: '聯絡我們'
         },
         hero: {
             title: '2025 智慧教育論壇 · AIMUN 亞太模聯 · 聯合國體驗日',
@@ -1139,7 +1163,7 @@ const translations: Record<LangKey, any> = {
             lead: '選擇合適方案並完成報名。早鳥截止：2025/09/25。',
             btnIndividual: '個人報名',
             btnGroup: '團體 / 學校',
-            viewDetail: 'view detailed packages',
+            viewDetail: '查看參會方案',
             educators: {
                 title: '教育者（SEF）',
                 items: [

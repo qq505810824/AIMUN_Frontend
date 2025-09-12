@@ -29,7 +29,7 @@ export default function HeaderView(props: ViewProps) {
         router.push(section);
     };
 
-    const logout = async () => { };
+    const logout = async () => {};
 
     return (
         <>
