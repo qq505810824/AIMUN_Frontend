@@ -37,9 +37,7 @@ const LocaleLayout = ({ children }: { children: React.ReactNode }) => {
                     <LangProvider>
                         <AppContextProvider>
                             <LoadProvider>
-                                <ModalContextProvider>
-                                    {children}
-                                </ModalContextProvider>
+                                <ModalContextProvider>{children}</ModalContextProvider>
                             </LoadProvider>
                         </AppContextProvider>
                     </LangProvider>

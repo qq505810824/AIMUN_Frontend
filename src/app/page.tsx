@@ -7,7 +7,7 @@ import { Hero } from './components/Hero';
 
 const Page = () => {
     return (
-        <div className='flex flex-col '>
+        <div className="flex flex-col ">
             <HeaderSet />
             <Hero />
             <div className="flex flex-col   items-center w-full  ">
@@ -17,7 +17,6 @@ const Page = () => {
             </div>
             <Footer />
         </div>
-
     );
 };
 
