@@ -1,12 +1,16 @@
 'use client';
 import News from '@/app/(commonLayout)/news/page';
+import { useLang } from '@/context/lang-context';
 import { Mail } from 'lucide-react';
 import { useMemo, useState } from 'react';
 
 export default function App() {
-    const [lang, setLang] = useState<LangKey>('en');
+    // const [lang, setLang] = useState<LangKey>('en');
     const [tab, setTab] = useState('home');
     const [aboutTab, setAboutTab] = useState('sef');
+
+    const { lang, setLang } = useLang();
+    // 现在 lang 已经是正确的 LangKey 类型，无需类型断言
 
     const T = useMemo(() => translations[lang], [lang]);
 
@@ -14,25 +18,30 @@ export default function App() {
         <div className="min-h-screen bg-slate-50 text-slate-900">
             <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
                 <nav className="mx-auto max-w-7xl px-4 py-3 flex justify-between">
-                    <ul className="flex flex-wrap gap-2">
-                        {[
-                            { id: 'home', label: T.nav.home },
-                            { id: 'about', label: T.nav.about },
-                            { id: 'highlights', label: T.nav.highlights },
-                            { id: 'news', label: T.nav.news },
-                            { id: 'register', label: T.nav.register },
-                            { id: 'contact', label: T.nav.contact }
-                        ].map((item) => (
-                            <li key={item.id}>
-                                <button
-                                    onClick={() => setTab(item.id)}
-                                    className={`px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 ${tab === item.id ? 'bg-slate-900 text-white hover:bg-slate-900' : ''}`}
-                                >
-                                    {item.label}
-                                </button>
-                            </li>
-                        ))}
-                    </ul>
+                    <div className='flex flex-row items-center'>
+                        {/* <a href="#" className="text-xl font-bold mr-4">
+                            AIMUN
+                        </a> */}
+                        <ul className="flex flex-wrap gap-2">
+                            {[
+                                { id: 'home', label: T.nav.home },
+                                { id: 'about', label: T.nav.about },
+                                { id: 'highlights', label: T.nav.highlights },
+                                { id: 'news', label: T.nav.news },
+                                { id: 'register', label: T.nav.register },
+                                { id: 'contact', label: T.nav.contact }
+                            ].map((item) => (
+                                <li key={item.id}>
+                                    <button
+                                        onClick={() => setTab(item.id)}
+                                        className={`px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 ${tab === item.id ? 'bg-slate-900 text-white hover:bg-slate-900' : ''}`}
+                                    >
+                                        {item.label}
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
 
                     <div className="flex items-center gap-2">
                         <LangSwitcher lang={lang} setLang={setLang} />
@@ -82,10 +91,10 @@ export default function App() {
 function LangSwitcher({ lang, setLang }: { lang: LangKey; setLang: (l: LangKey) => void }) {
     return (
         <div className="inline-flex rounded-xl border border-slate-300 bg-white overflow-hidden">
-            {(['en', 'zh'] as LangKey[]).map((l) => (
+            {(['en', 'zh']).map((l) => (
                 <button
                     key={l}
-                    onClick={() => setLang(l)}
+                    onClick={() => setLang(l as LangKey)}
                     className={`px-3 py-1 text-sm ${lang === l ? 'bg-slate-900 text-white' : 'hover:bg-slate-100'}`}
                 >
                     {l === 'en' ? 'EN' : '繁體'}

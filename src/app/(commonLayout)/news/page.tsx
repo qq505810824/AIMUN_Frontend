@@ -5,8 +5,6 @@ import moment from 'moment';
 import { useEffect, useMemo, useState } from 'react';
 import useSWR from 'swr';
 
-
-
 export default function News() {
     const { L } = useLang();
 
@@ -77,7 +75,7 @@ export default function News() {
     return (
         <main className="mx-auto max-w-7xl px-4 py-12">
             <div className="flex items-center justify-between mb-4">
-                <h2 className="text-2xl font-bold">{'news'}</h2>
+                <h2 className="text-2xl font-bold">{L('News', '最新消息')}</h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {(items || []).map((n) => (
