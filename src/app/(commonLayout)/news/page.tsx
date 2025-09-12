@@ -102,10 +102,10 @@ export default function News() {
                                 <p className="text-sm text-slate-700 line-clamp-3">
                                     {L(
                                         (n.description && n.description.replace(/<[^>]*>/g, '')) ||
-                                        '',
+                                            '',
                                         (n.description_zh &&
                                             n.description_zh.replace(/<[^>]*>/g, '')) ||
-                                        ''
+                                            ''
                                     )}
                                 </p>
                             )}

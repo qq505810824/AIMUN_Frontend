@@ -1,7 +1,7 @@
 'use client';
 import { useLang } from '@/context/lang-context';
 import { GlobalStyles, Sheet } from '@mui/joy';
-import { Globe2 } from 'lucide-react';
+import { Globe2, Menu, X } from 'lucide-react';
 import { useRouter } from 'next-nprogress-bar';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -29,7 +29,7 @@ export default function HeaderView(props: ViewProps) {
         router.push(section);
     };
 
-    const logout = async () => {};
+    const logout = async () => { };
 
     return (
         <>
@@ -68,32 +68,15 @@ export default function HeaderView(props: ViewProps) {
                         <div className="flex items-center space-x-2 md:space-x-4">
                             <button
                                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                                className="md:hidden flex items-center p-2 rounded-md text-gold-400 hover:text-gold-500 transition-colors focus:outline-none"
+                                className="md:hidden flex items-center p-2 rounded-md text-slate-700 hover:text-slate-900 transition-colors focus:outline-none"
                                 aria-expanded={isMenuOpen}
                                 aria-label="打開選單"
                             >
-                                <svg
-                                    className="h-6 w-6"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    {isMenuOpen ? (
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M6 18L18 6M6 6l12 12"
-                                        />
-                                    ) : (
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M4 6h16M4 12h16M4 18h16"
-                                        />
-                                    )}
-                                </svg>
+                                {isMenuOpen ? (
+                                    <X className="h-6 w-6" />
+                                ) : (
+                                    <Menu className="h-6 w-6" />
+                                )}
                             </button>
                             <Link href="/" className="flex items-center gap-2">
                                 <Globe2 className="h-6 w-6 text-blue-600" />
@@ -123,9 +106,9 @@ export default function HeaderView(props: ViewProps) {
 
                     {/* 移動端下拉選單 */}
                     <div
-                        className={`flex md:hidden transition-all duration-300 overflow-hidden ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
+                        className={`md:hidden transition-all duration-300 overflow-hidden ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
                     >
-                        <div className="w-full flex flex-col px-4 pt-4 pb-3 space-y-1 shadow-inner">
+                        <div className="w-full flex flex-col px-4 pt-4 pb-3 space-y-1 shadow-inner bg-white border-t border-gray-100">
                             {links.map((link) => {
                                 // const isActive = section == link.href;
                                 let isActive =
@@ -143,7 +126,7 @@ export default function HeaderView(props: ViewProps) {
                                         key={link.href}
                                         // href={link.href}
                                         className={`w-full block px-3 py-2 rounded-md text-base font-medium transition-colors 
-                              ${isActive ? 'text-white bg-blue-500' : ''} `}
+                              ${isActive ? 'text-white bg-blue-500' : 'text-slate-700 hover:bg-gray-100'} `}
                                         onClick={() => {
                                             showSection(link.href);
                                             setIsMenuOpen(false);
@@ -154,8 +137,11 @@ export default function HeaderView(props: ViewProps) {
                                 );
                             })}
                             <button
-                                onClick={() => setLang(lang === 'en' ? 'zh' : 'en')}
-                                className="px-3 py-1.5 border rounded-lg text-xs"
+                                onClick={() => {
+                                    setLang(lang === 'en' ? 'zh' : 'en');
+                                    setIsMenuOpen(false);
+                                }}
+                                className="px-3 py-1.5 border rounded-lg text-xs mt-2"
                             >
                                 {lang === 'en' ? '繁' : 'EN'}
                             </button>

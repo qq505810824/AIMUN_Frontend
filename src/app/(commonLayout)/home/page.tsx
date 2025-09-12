@@ -2,27 +2,70 @@
 import News from '@/app/(commonLayout)/news/page';
 import { useLang } from '@/context/lang-context';
 import { Mail } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 export default function App() {
     // const [lang, setLang] = useState<LangKey>('en');
     const [tab, setTab] = useState('home');
     const [aboutTab, setAboutTab] = useState('sef');
+    const [isMenuOpen, setIsMenuOpen] = useState(false); // 添加移动端菜单状态
 
     const { lang, setLang } = useLang();
     // 现在 lang 已经是正确的 LangKey 类型，无需类型断言
 
     const T = useMemo(() => translations[lang], [lang]);
 
+    // 点击页面其他地方时关闭菜单
+    useEffect(() => {
+        const handleClickOutside = (e: MouseEvent) => {
+            const menu = document.getElementById('mobile-menu');
+            const button = document.getElementById('menu-button');
+
+            if (isMenuOpen && menu && button &&
+                !menu.contains(e.target as Node) &&
+                !button.contains(e.target as Node)) {
+                setIsMenuOpen(false);
+            }
+        };
+
+        if (isMenuOpen) {
+            document.addEventListener('click', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, [isMenuOpen]);
+
     return (
         <div className="min-h-screen bg-slate-50 text-slate-900">
             <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
                 <nav className="mx-auto max-w-7xl px-4 py-3 flex justify-between">
-                    <div className='flex flex-row items-center'>
-                        {/* <a href="#" className="text-xl font-bold mr-4">
-                            AIMUN
-                        </a> */}
-                        <ul className="flex flex-wrap gap-2">
+                    <div className="flex flex-row items-center">
+                        {/* 移动端菜单按钮 */}
+                        <button
+                            id="menu-button"
+                            onClick={(e) => {
+                                e.stopPropagation(); // 阻止事件冒泡
+                                setIsMenuOpen(!isMenuOpen);
+                            }}
+                            className="md:hidden mr-4 p-2 rounded-md text-slate-700 hover:bg-slate-100 focus:outline-none"
+                            aria-label="Toggle menu"
+                            aria-expanded={isMenuOpen}
+                        >
+                            {isMenuOpen ? (
+                                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            ) : (
+                                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                                </svg>
+                            )}
+                        </button>
+
+                        {/* 桌面端导航列表 - 在移动端隐藏 */}
+                        <ul className="hidden md:flex flex-wrap gap-2">
                             {[
                                 { id: 'home', label: T.nav.home },
                                 { id: 'about', label: T.nav.about },
@@ -33,7 +76,10 @@ export default function App() {
                             ].map((item) => (
                                 <li key={item.id}>
                                     <button
-                                        onClick={() => setTab(item.id)}
+                                        onClick={() => {
+                                            setTab(item.id);
+                                            setIsMenuOpen(false); // 关闭移动端菜单
+                                        }}
                                         className={`px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-100 ${tab === item.id ? 'bg-slate-900 text-white hover:bg-slate-900' : ''}`}
                                     >
                                         {item.label}
@@ -41,6 +87,37 @@ export default function App() {
                                 </li>
                             ))}
                         </ul>
+
+                        {/* 移动端导航列表 - 在桌面端隐藏 */}
+                        {isMenuOpen && (
+                            <div
+                                id="mobile-menu"
+                                className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-slate-200 shadow-lg z-50"
+                            >
+                                <ul className="flex flex-col py-2">
+                                    {[
+                                        { id: 'home', label: T.nav.home },
+                                        { id: 'about', label: T.nav.about },
+                                        { id: 'highlights', label: T.nav.highlights },
+                                        { id: 'news', label: T.nav.news },
+                                        { id: 'register', label: T.nav.register },
+                                        { id: 'contact', label: T.nav.contact }
+                                    ].map((item) => (
+                                        <li key={item.id}>
+                                            <button
+                                                onClick={() => {
+                                                    setTab(item.id);
+                                                    setIsMenuOpen(false); // 点击后关闭菜单
+                                                }}
+                                                className={`w-full text-left px-4 py-3 text-sm font-medium hover:bg-slate-100 ${tab === item.id ? 'bg-slate-900 text-white hover:bg-slate-900' : ''}`}
+                                            >
+                                                {item.label}
+                                            </button>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
                     </div>
 
                     <div className="flex items-center gap-2">
@@ -50,8 +127,9 @@ export default function App() {
                             onClick={(e) => {
                                 e.preventDefault();
                                 setTab('register');
+                                setIsMenuOpen(false); // 关闭移动端菜单
                             }}
-                            className="ml-3 inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 shadow"
+                            className="ml-3 inline-flex items-center gap-2 rounded-xl bg-blue-600 px-2 py-1 sm:px-3 sm:py-3 text-xs sm:text-sm text-white hover:bg-blue-700 shadow"
                         >
                             {T.ctaRegister}
                         </a>
@@ -63,8 +141,14 @@ export default function App() {
                 <Home
                     lang={lang}
                     T={T}
-                    goRegister={() => setTab('register')}
-                    goAbout={() => setTab('about')}
+                    goRegister={() => {
+                        setTab('register');
+                        setIsMenuOpen(false);
+                    }}
+                    goAbout={() => {
+                        setTab('about');
+                        setIsMenuOpen(false);
+                    }}
                     setAboutTab={setAboutTab}
                 />
             )}
@@ -91,7 +175,7 @@ export default function App() {
 function LangSwitcher({ lang, setLang }: { lang: LangKey; setLang: (l: LangKey) => void }) {
     return (
         <div className="inline-flex rounded-xl border border-slate-300 bg-white overflow-hidden">
-            {(['en', 'zh']).map((l) => (
+            {['en', 'zh'].map((l) => (
                 <button
                     key={l}
                     onClick={() => setLang(l as LangKey)}
@@ -121,15 +205,15 @@ function Home({
         <main>
             {/* HERO */}
             <section className="relative">
-                {/* <img
-                    src="https://images.unsplash.com/photo-1510308522-cb1a3511c3bd?q=80&w=2400&auto=format&fit=crop"
+                <img
+                    src="./archive/59831757665060_.pic_hd.jpg"
                     alt="Macau skyline"
-                    className="h-[60vh] w-full object-cover"
-                /> */}
-                <div className="h-[60vh] bg-gray-100"></div>
+                    className="h-[70vh] w-full object-cover"
+                />
+                <div className="bg-gray-100"></div>
                 <div className="absolute inset-0 bg-slate-900/50" />
                 <div className="absolute inset-0 flex items-center">
-                    <div className="mx-auto max-w-7xl px-4">
+                    <div className="mx-auto max-w-7xl px-4 pt-0 sm:pt-0">
                         <div className="max-w-3xl text-white">
                             <p className="mb-2 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs backdrop-blur">
                                 <span>Oct 24–26, 2025</span>
@@ -172,8 +256,8 @@ function Home({
                 <p className="mt-2 text-slate-600 max-w-3xl">{T.homeSections.events.lead}</p>
                 <div className="mt-6 grid md:grid-cols-3 gap-6">
                     <EventCard
-                        img="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1600&auto=format&fit=crop"
-                        tag="SEF"
+                        img="./archive/59851757665119_.pic_hd.jpg"
+                        tag={T.about.tabs.sef}
                         title={T.homeSections.events.cards[0].t}
                         desc={T.homeSections.events.cards[0].d}
                         onClick={() => {
@@ -183,7 +267,7 @@ function Home({
                     />
                     <EventCard
                         img="./archive/model_un_landing_page.jpg"
-                        tag="AIMUN"
+                        tag={T.about.tabs.aimun}
                         title={T.homeSections.events.cards[1].t}
                         desc={T.homeSections.events.cards[1].d}
                         onClick={() => {
@@ -193,7 +277,7 @@ function Home({
                     />
                     <EventCard
                         img="./archive/UN-75-tile700x400.jpg"
-                        tag="UN Day"
+                        tag={T.about.tabs.un}
                         title={T.homeSections.events.cards[2].t}
                         desc={T.homeSections.events.cards[2].d}
                         onClick={() => {
@@ -355,7 +439,7 @@ function About({
                 {aboutTab === 'aimun' && (
                     <>
                         <AboutCard
-                            img="./archive/59831757665060_.pic_hd.jpg"
+                            img="./archive/model_un_landing_page.jpg"
                             title={T.about.aimun.title}
                             bullets={T.about.aimun.points}
                             tag={T.about.tabs.aimun}
