@@ -153,7 +153,7 @@ export default function App() {
                                 setTab('register');
                                 setIsMenuOpen(false); // 关闭移动端菜单
                             }}
-                            className="ml-3 inline-flex items-center gap-2 rounded-xl bg-blue-600 px-2 py-1 sm:px-3 sm:py-3 text-xs sm:text-sm text-white hover:bg-blue-700 shadow"
+                            className="ml-3 inline-flex items-center gap-2 rounded-xl bg-blue-600 px-2 py-1 sm:px-3 sm:py-2 text-xs sm:text-sm text-white hover:bg-blue-700 shadow"
                         >
                             {T.ctaRegister}
                         </a>
@@ -277,7 +277,7 @@ function Home({
                 <h2 className="text-2xl md:text-3xl font-extrabold">
                     {T.homeSections.events.title}
                 </h2>
-                <p className="mt-2 text-slate-600 max-w-3xl">{T.homeSections.events.lead}</p>
+                <p className="mt-2 text-slate-600">{T.homeSections.events.lead}</p>
                 <div className="mt-6 grid md:grid-cols-3 gap-6">
                     <EventCard
                         img="./archive/59851757665119_.pic_hd.jpg"
@@ -336,13 +336,13 @@ function Home({
             {/* FEATURED SPEAKERS */}
             <section className="mx-auto max-w-7xl px-4 pb-12">
                 <h3 className="text-xl font-bold">{T.homeSections.speakers.title}</h3>
-                <div className="mt-4 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {T.homeSections.speakers.items.map((s: any, i: number) => (
                         <div
                             key={i}
                             className="rounded-2xl bg-white border border-slate-200 shadow-sm overflow-hidden"
                         >
-                            <img src={s.img} alt={s.name} className="h-44 w-full object-cover" />
+                            <img src={s.img} alt={s.name} className="h-52 w-full object-cover" />
                             <div className="p-5">
                                 <div className="font-semibold">{s.name}</div>
                                 <div className="text-sm text-slate-600">{s.role}</div>
@@ -454,10 +454,10 @@ function About({
                         <AboutCard
                             img="./archive/59851757665119_.pic_hd.jpg"
                             title={T.about.sef.title}
-                            bullets={T.about.sef.points}
+                            description={T.about.sef.description}
                             tag={T.about.tabs.sef}
                         />
-                        <AboutInfo title={T.about.sef.infoTitle} lines={T.about.sef.info} />
+                        <AboutInfo title={T.about.sef.infoTitle} lines={T.about.sef.info} points_title={T.about.un.points_title} points={T.about.sef.points} />
                     </>
                 )}
                 {aboutTab === 'aimun' && (
@@ -465,10 +465,10 @@ function About({
                         <AboutCard
                             img="./archive/model_un_landing_page.jpg"
                             title={T.about.aimun.title}
-                            bullets={T.about.aimun.points}
+                            description={T.about.aimun.description}
                             tag={T.about.tabs.aimun}
                         />
-                        <AboutInfo title={T.about.aimun.infoTitle} lines={T.about.aimun.info} />
+                        <AboutInfo title={T.about.aimun.infoTitle} lines={T.about.aimun.info} points_title={T.about.un.points_title} points={T.about.aimun.points} />
                     </>
                 )}
                 {aboutTab === 'un' && (
@@ -476,10 +476,10 @@ function About({
                         <AboutCard
                             img="./archive/UN-75-tile700x400.jpg"
                             title={T.about.un.title}
-                            bullets={T.about.un.points}
+                            description={T.about.un.description}
                             tag={T.about.tabs.un}
                         />
-                        <AboutInfo title={T.about.un.infoTitle} lines={T.about.un.info} />
+                        <AboutInfo title={T.about.un.infoTitle} lines={T.about.un.info} points_title={T.about.un.points_title} points={T.about.un.points} />
                     </>
                 )}
             </div>
@@ -490,12 +490,12 @@ function About({
 function AboutCard({
     img,
     title,
-    bullets,
+    description,
     tag
 }: {
     img: string;
     title: string;
-    bullets: string[];
+    description: string;
     tag: string;
 }) {
     return (
@@ -506,17 +506,15 @@ function AboutCard({
                     {tag}
                 </div>
                 <h3 className="mt-3 text-xl font-semibold">{title}</h3>
-                <ul className="mt-3 space-y-2 text-slate-700 list-disc pl-5">
-                    {bullets.map((b: string, idx: number) => (
-                        <li key={idx}>{b}</li>
-                    ))}
-                </ul>
+                <h5 className="mt-3 space-y-2 text-slate-700 list-disc">
+                    {description}
+                </h5>
             </div>
         </div>
     );
 }
 
-function AboutInfo({ title, lines }: { title: string; lines: string[] }) {
+function AboutInfo({ title, lines, points_title, points }: { title: string; lines: string[]; points_title: string, points: string[] }) {
     return (
         <div className="rounded-2xl bg-white border border-slate-200 shadow-sm p-6">
             <h4 className="text-lg font-semibold">{title}</h4>
@@ -524,6 +522,15 @@ function AboutInfo({ title, lines }: { title: string; lines: string[] }) {
                 {lines.map((l: string, idx: number) => (
                     <p key={idx}>• {l}</p>
                 ))}
+            </div>
+
+            <div className='mt-6'>
+                <h4 className="text-lg font-semibold">{points_title}</h4>
+                <div className="mt-3 space-y-1 text-slate-700">
+                    {points?.map((b: string, idx: number) => (
+                        <p key={idx}>• {b}</p>
+                    ))}
+                </div>
             </div>
         </div>
     );
@@ -802,7 +809,7 @@ const translations: Record<LangKey, any> = {
         homeSections: {
             events: {
                 title: 'Three Signature Events',
-                lead: 'A unified program designed for educators and students across the Asia-Pacific region.',
+                lead: 'Three signature events designed for both educators and students, provides access to latest development in AI and technology. ',
                 cards: [
                     {
                         t: 'Smart Education Forum (SEF)',
@@ -848,22 +855,17 @@ const translations: Record<LangKey, any> = {
                     {
                         name: 'Prof. Tshilidzi Marwala',
                         role: 'Rector, United Nations University',
-                        img: 'https://images.unsplash.com/photo-1544006659-f0b21884ce1d?q=80&w=800&auto=format&fit=crop'
+                        img: './speakers/Marwala.jpg'
                     },
                     {
-                        name: 'UNESCO Chair in AI',
-                        role: 'Exclusive Workshop Lead',
-                        img: 'https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=800&auto=format&fit=crop'
+                        name: 'Prof. John Shawe-Taylor',
+                        role: 'UNESCO Chair in AI',
+                        img: './speakers/John.jpg'
                     },
                     {
-                        name: 'Microsoft AI for Good',
-                        role: 'Keynote Speaker',
-                        img: 'https://images.unsplash.com/photo-1573497491765-dccce02b29df?q=80&w=800&auto=format&fit=crop'
-                    },
-                    {
-                        name: 'NVIDIA AI Tech Centre',
-                        role: 'Industry Session',
-                        img: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800&auto=format&fit=crop'
+                        name: 'Prof.CHAN, Cecilia K. Y.',
+                        role: 'Professor, Faculty of Education, HKU',
+                        img: './speakers/Cecilia.png'
                     }
                 ]
             },
@@ -893,11 +895,13 @@ const translations: Record<LangKey, any> = {
             lead: 'Designed for principals, educators, and students (ages 10–25). Explore AI in education, diplomacy, and global governance with UNU Macau and partners.',
             tabs: {
                 sef: 'Smart Education Forum',
-                aimun: 'UN Experience Day',
-                un: 'Asia-Pacific International MUN Conference'
+                aimun: 'Asia-Pacific International MUN Conference',
+                un: 'UN Experience Day'
             },
             sef: {
                 title: 'Smart Education Forum (SEF) — For Principals & Educators',
+                description: 'The 2025 Smart Education Forum is dedicated to the theme of “Human-AI Co-creation and Linguistic Intelligence,” with a strong emphasis on redefining how AI can serve as a lifelong learning partner, empowering, rather than overshadowing, human growth. ',
+                points_title: 'Event Highlights',
                 points: [
                     'Keynote by UNU Rector Prof. Tshilidzi Marwala',
                     'Exclusive workshop with the UNESCO Chair in AI',
@@ -914,6 +918,8 @@ const translations: Record<LangKey, any> = {
             },
             aimun: {
                 title: 'AIMUN Conference — For Grade 4–12 & University Students',
+                description: 'The 2025 Asia-Pacific international Model United Nations (AIMUN) Conference, held October 25-26 in Macau in partnership with UNU Macau. It is the first ever AI-integrated MUN.  The conference features high-level speakers from the UN and a UNU-certified credential to outstanding performers.',
+                points_title: 'Event Highlights',
                 points: [
                     'First AI-integrated MUN in close collaboration with the United Nations University',
                     'Committees include ILO, WTO, GA1, UNEP, WHO',
@@ -929,6 +935,8 @@ const translations: Record<LangKey, any> = {
             },
             un: {
                 title: 'UN Experience Day — For Students aged 10–25',
+                description: 'The UN Experience day is an exclusive event for students aiming to provide them with global exposure and key insights from industry leaders. The event features a range of activities including, NVIDIA hands-on workshop, private meeting with UNESCO,  project incubations and UN-certified certificates',
+                points_title: 'Event Highlights',
                 points: [
                     'Hands-on SDG workshops & heritage exploration',
                     'Engage with UN officials and industry leaders',
@@ -949,17 +957,17 @@ const translations: Record<LangKey, any> = {
                 {
                     t: 'Cross-Disciplinary Forum',
                     d: 'Global perspectives on AI + Education with policy and practice.',
-                    img: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1600&auto=format&fit=crop'
+                    img: './event/e_1.jpg'
                 },
                 {
                     t: 'Top Speakers',
                     d: 'UNU Rector, UNESCO Chair in AI, Microsoft AI for Good, NVIDIA AI Technology Centre.',
-                    img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1600&auto=format&fit=crop'
+                    img: './event/e_2.jpg'
                 },
                 {
                     t: 'Practice & Recognition',
                     d: 'UNU/UNESCO certificates, project incubation, and youth innovation network.',
-                    img: 'https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1600&auto=format&fit=crop'
+                    img: './event/e_3.jpg'
                 }
             ]
         },
@@ -1005,7 +1013,7 @@ const translations: Record<LangKey, any> = {
             contact: '聯絡我們'
         },
         hero: {
-            title: '2025 智慧教育論壇 · AIMUN 亞太模聯 · 聯合國體驗日',
+            title: '2025 智慧教育論壇 ·亞太區國際模擬聯合國大會· 聯合國體驗日',
             subtitle:
                 '聯合國80週年、聯合國大學50週年里程碑系列於澳門舉行—匯聚教育者、學生與國際領袖，探索人工智能與教育如何塑造學習、領導力與全球合作的未來。'
         },
@@ -1059,23 +1067,18 @@ const translations: Record<LangKey, any> = {
                 items: [
                     {
                         name: 'Prof. Tshilidzi Marwala',
-                        role: '聯合國大學校長',
-                        img: 'https://images.unsplash.com/photo-1544006659-f0b21884ce1d?q=80&w=800&auto=format&fit=crop'
+                        role: 'Rector, United Nations University',
+                        img: './speakers/Marwala.jpg'
                     },
                     {
-                        name: 'UNESCO AI 講席',
-                        role: '專屬工作坊帶領',
-                        img: 'https://images.unsplash.com/photo-1527980965255-d3b416303d12?q=80&w=800&auto=format&fit=crop'
+                        name: 'Prof. John Shawe-Taylor',
+                        role: 'UNESCO Chair in AI',
+                        img: './speakers/John.jpg'
                     },
                     {
-                        name: 'Microsoft AI for Good',
-                        role: '產業主題演講',
-                        img: 'https://images.unsplash.com/photo-1573497491765-dccce02b29df?q=80&w=800&auto=format&fit=crop'
-                    },
-                    {
-                        name: 'NVIDIA AI Tech Centre',
-                        role: '產業分享',
-                        img: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=800&auto=format&fit=crop'
+                        name: 'Prof.CHAN, Cecilia K. Y.',
+                        role: 'Professor, Faculty of Education, HKU',
+                        img: './speakers/Cecilia.png'
                     }
                 ]
             },
@@ -1103,9 +1106,11 @@ const translations: Record<LangKey, any> = {
         about: {
             title: '活動介紹',
             lead: '為校長、教育者與 10–25 歲學生而設。與聯合國大學駐澳門研究所及夥伴，深入 AI 教育、外交與全球治理。',
-            tabs: { sef: '智慧教育論壇', aimun: '聯合國體驗日', un: '亞太區國際模擬聯合國大會' },
+            tabs: { sef: '智慧教育論壇', aimun: '亞太區國際模擬聯合國大會', un: '聯合國體驗日' },
             sef: {
                 title: '智慧教育論壇（SEF）— 校長與教育者',
+                description: '2025智慧教育論壇以「人機共創與語言智能」為核心議題，致力重新定義人工智慧如何成為終身學習夥伴——賦能人類成長，而非取代人類發展。',
+                points_title: '活動亮點',
                 points: [
                     'UNU 校長主題演講',
                     'UNESCO AI 講席專屬工作坊',
@@ -1118,6 +1123,8 @@ const translations: Record<LangKey, any> = {
             },
             aimun: {
                 title: 'AIMUN 模擬聯合國大會 — 小四至大學',
+                description: '2025年亞太國際模擬聯合國大會（AIMUN）於10月25日至26日在澳門舉行，我們與聯合國大學澳門分校協辦。本次會議創下全球首例導入人工智慧技術的模擬聯合國盛會，特邀聯合國高階官員擔任主講嘉賓，並將頒發聯合國大學認證的卓越表現證書予傑出與會者。',
+                points_title: '活動亮點',
                 points: [
                     '全球首個 AI 結合模聯，與聯合國大學緊密合作',
                     '委員會：ILO、WTO、GA1、UNEP、WHO',
@@ -1129,6 +1136,8 @@ const translations: Record<LangKey, any> = {
             },
             un: {
                 title: '聯合國體驗日 — 10–25 歲學生',
+                description: '聯合國體驗日是專為學生打造的獨家活動，旨在提供全球視野並獲取業界領袖的關鍵洞見。活動包含多項特色環節：NVIDIA實作工作坊、聯合國教科文組織專屬會談、專案孵化計畫，以及聯合國認證證書頒發。',
+                points_title: '活動亮點',
                 points: [
                     'SDG 實作工作坊與文化探索',
                     '與聯合國官員及產業領袖交流',
@@ -1145,17 +1154,17 @@ const translations: Record<LangKey, any> = {
                 {
                     t: '跨域論壇',
                     d: '以 AI + 教育為核心，兼顧政策與實作。',
-                    img: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1600&auto=format&fit=crop'
+                    img: './event/e_1.jpg'
                 },
                 {
                     t: '重量級講者',
                     d: 'UNU 校長、UNESCO AI 講席、Microsoft AI for Good、NVIDIA 等。',
-                    img: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1600&auto=format&fit=crop'
+                    img: './event/e_2.jpg'
                 },
                 {
                     t: '認證與機會',
                     d: 'UNU/UNESCO 證書、專案孵化與青年創新網絡。',
-                    img: 'https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?q=80&w=1600&auto=format&fit=crop'
+                    img: './event/e_3.jpg'
                 }
             ]
         },

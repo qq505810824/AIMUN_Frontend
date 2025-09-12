@@ -74,9 +74,9 @@ export default function News() {
 
     return (
         <main className="mx-auto max-w-7xl px-4 py-12">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex flex-col mb-4">
                 <h2 className="text-2xl md:text-3xl font-extrabold">{L('News', '最新消息')}</h2>
-                {/* <p className="mt-2 text-slate-600 max-w-3xl">{T.about.lead}</p>  */}
+                <p className="mt-2 text-slate-600">{L('Check out the latest news about global issues and technology.', '查閲關於全球資訊和科技發展的最新新聞')}</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                 {(items || []).map((n) => (
