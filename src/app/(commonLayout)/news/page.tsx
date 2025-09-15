@@ -67,7 +67,7 @@ export default function News() {
                     <div className="p-6">
                         {/* 发布日期 */}
                         <div className="text-sm text-slate-500 mb-2">
-                            {moment(selectedNews.updated_at).format('YYYY-MM-DD HH:mm')}
+                            {moment(selectedNews.published_at || selectedNews.updated_at).format('YYYY-MM-DD')}
                         </div>
 
                         {/* 标题 */}
@@ -84,7 +84,9 @@ export default function News() {
                                         __html: L(
                                             selectedNews.description || '',
                                             selectedNews.description_zh || ''
-                                        ).toString().replaceAll('\n', '<br/>')
+                                        )
+                                            .toString()
+                                            .replaceAll('\n', '<br/>')
                                     }}
                                 />
                             ) : (
@@ -152,7 +154,7 @@ export default function News() {
                             )}
                             <div className="p-4 flex-1 flex flex-col">
                                 <div className="text-xs text-slate-500 mb-1">
-                                    {moment(n.updated_at).format('YYYY-MM-DD')}
+                                    {moment(n.published_at || n.updated_at).format('YYYY-MM-DD')}
                                 </div>
                                 <h3 className="font-semibold mb-2 line-clamp-2">
                                     {L(n.title, n.title_zh)}
