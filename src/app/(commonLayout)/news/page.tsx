@@ -67,7 +67,9 @@ export default function News() {
                     <div className="p-6">
                         {/* 发布日期 */}
                         <div className="text-sm text-slate-500 mb-2">
-                            {moment(selectedNews.published_at || selectedNews.updated_at).format('YYYY-MM-DD')}
+                            {moment(selectedNews.published_at || selectedNews.updated_at).format(
+                                'YYYY-MM-DD'
+                            )}
                         </div>
 
                         {/* 标题 */}
@@ -164,10 +166,10 @@ export default function News() {
                                         {L(
                                             (n.description &&
                                                 n.description.replace(/<[^>]*>/g, '')) ||
-                                            '',
+                                                '',
                                             (n.description_zh &&
                                                 n.description_zh.replace(/<[^>]*>/g, '')) ||
-                                            ''
+                                                ''
                                         )}
                                     </p>
                                 )}

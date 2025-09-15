@@ -71,7 +71,7 @@ export const Register = ({ T, lang }: ViewProps) => {
                     </div>
                 </div>
             </div>
-
+            {/* 
             <div className="mt-6 rounded-2xl bg-white border border-slate-200 shadow-sm p-6">
                 <h4 className="text-lg font-semibold">{T.register.addons.title}</h4>
                 <ul className="mt-2 space-y-1 text-slate-700 list-disc pl-5">
@@ -79,7 +79,7 @@ export const Register = ({ T, lang }: ViewProps) => {
                         <li key={i}>{x}</li>
                     ))}
                 </ul>
-            </div>
+            </div> */}
         </main>
     );
 };

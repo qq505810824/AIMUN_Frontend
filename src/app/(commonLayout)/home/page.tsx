@@ -305,7 +305,7 @@ const translations: Record<LangKey, any> = {
                 points_title: 'Event Highlights',
                 points: [
                     'First AI-integrated MUN in close collaboration with the United Nations University',
-                    'Committees include ILO, WTO, GA1, UNEP, WHO',
+                    'Committees include 國際勞工組織 (ILO), 世界貿易組織 (WTO), 聯合國大會第一委員會, United Nations Environment Programme (UNEP), World Health Organization (WHO)',
                     "Outstanding resolutions submitted to the UN Secretary-General's office",
                     'Mentorship from experienced MUN advisors and UN officials'
                 ],
@@ -356,24 +356,27 @@ const translations: Record<LangKey, any> = {
             ]
         },
         register: {
-            lead: 'Choose your path and secure your spot. Early-bird deadline: Sep 25, 2025.',
+            lead: 'Choose your path and secure your spot. Early-bird deadline: Sep 30, 2025.',
             btnIndividual: 'Individual',
             btnGroup: 'Group / School',
             viewDetail: 'View detailed packages',
             educators: {
                 title: 'For Principals & Educators (SEF)',
                 items: [
-                    'Package A — General Pass: Forum access + luncheon',
-                    'Package B — Full Pass: Includes educational field visit (Oct 26)',
-                    'Add-on: Exclusive workshop with UNESCO Chair in AI (by request)'
+                    'Package A: General Pass: Forum access + luncheon',
+                    'Package B: Full Pass: Includes educational field visit (Oct 26)',
+                    'Add-ons: Exclusive workshop with UNESCO Chair in AI (by request)'
                 ]
             },
             students: {
                 title: 'For Students (AIMUN & UN Experience Day)',
                 items: [
-                    'UN Experience Day — Full Pass',
-                    'MUN — General Pass / Full Pass',
-                    'Add-ons: Residential package, 2-week AIMUN Leadership Camp (Oct 6–17)'
+                    'Package A: Package A: UN Experience Day VIP Premium Pass ',
+                    'Package B: UN Experience Day General Pass  ',
+                    'Package C: UN Experience Day Full Pass  ',
+                    'Package D: Model United Nations General Pass ',
+                    'Package E: Model United Nations Full Pass ',
+                    'Add-ons: Residential package, 2-week AIMUN Leadership Camp (Oct 6–17) '
                 ]
             },
             addons: {
@@ -390,7 +393,7 @@ const translations: Record<LangKey, any> = {
         ctaLearnMore: '了解更多',
         nav: {
             home: '首頁',
-            about: '關於我們',
+            about: '活動介紹',
             highlights: '活動亮點',
             news: '最新消息', // placehold
             register: '立即報名',
@@ -450,7 +453,7 @@ const translations: Record<LangKey, any> = {
             lead: '為校長、教育者與 10–25 歲學生而設。與聯合國大學駐澳門研究所及夥伴，深入 AI 教育、外交與全球治理。',
             tabs: { sef: '智慧教育論壇', aimun: '亞太區國際模擬聯合國大會', un: '聯合國體驗日' },
             sef: {
-                title: '智慧教育論壇（SEF）— 校長與教育者',
+                title: '智慧教育論壇（SEF）— 校長及教育者專屬',
                 description:
                     '2025智慧教育論壇以「人機共創與語言智能」為核心議題，致力重新定義人工智慧如何成為終身學習夥伴——賦能人類成長，而非取代人類發展。',
                 points_title: '活動亮點',
@@ -465,21 +468,21 @@ const translations: Record<LangKey, any> = {
                 info: ['日期：2025/10/25', '地點：永利皇宮', '對象：校長與教育者']
             },
             aimun: {
-                title: 'AIMUN 模擬聯合國大會 — 小四至大學',
+                title: 'AIMUN 模擬聯合國大會 — 小四至大學專屬',
                 description:
-                    '2025年亞太國際模擬聯合國大會（AIMUN）於10月25日至26日在澳門舉行，我們與聯合國大學澳門分校協辦。本次會議創下全球首例導入人工智慧技術的模擬聯合國盛會，特邀聯合國高階官員擔任主講嘉賓，並將頒發聯合國大學認證的卓越表現證書予傑出與會者。',
+                    '2025年亞太區國際模擬聯合國大會（AIMUN）於10月25日至26日在澳門舉行，我們與聯合國大學澳門分校協辦。本次會議創下全球首例導入人工智慧技術的模擬聯合國盛會，特邀聯合國高階官員擔任主講嘉賓，並將頒發聯合國大學認證的卓越表現證書予傑出與會者。',
                 points_title: '活動亮點',
                 points: [
                     '全球首個 AI 結合模聯，與聯合國大學緊密合作',
-                    '委員會：ILO、WTO、GA1、UNEP、WHO',
+                    '委員會：國際勞工組織 (ILO), 世界貿易組織 (WTO), 聯合國大會第一委員會, United Nations Environment Programme (UNEP), World Health Organization (WHO)',
                     '優秀決議提交至聯合國秘書長辦公室',
                     '資深顧問與聯合國官員指導'
                 ],
                 infoTitle: '詳細資訊',
-                info: ['日期：2025/10/25–26', '地點：UNU Macau / 永利皇宮', '語言：英 / 中']
+                info: ['日期：2025/10/25–26', '地點：聯合國大學駐澳門研究所 / 永利皇宮', '語言：英 / 中']
             },
             un: {
-                title: '聯合國體驗日 — 10–25 歲學生',
+                title: '聯合國體驗日 — 10-25歲學生專屬',
                 description:
                     '聯合國體驗日是專為學生打造的獨家活動，旨在提供全球視野並獲取業界領袖的關鍵洞見。活動包含多項特色環節：NVIDIA實作工作坊、聯合國教科文組織專屬會談、專案孵化計畫，以及聯合國認證證書頒發。',
                 points_title: '活動亮點',
@@ -514,7 +517,7 @@ const translations: Record<LangKey, any> = {
             ]
         },
         register: {
-            lead: '選擇合適方案並完成報名。早鳥截止：2025/09/25。',
+            lead: '選擇合適方案並完成報名。早鳥截止：2025/09/30。',
             btnIndividual: '個人報名',
             btnGroup: '團體 / 學校',
             viewDetail: '查看參會方案',
@@ -529,8 +532,11 @@ const translations: Record<LangKey, any> = {
             students: {
                 title: '學生（AIMUN & UN 體驗日）',
                 items: [
-                    'UN Experience Day — Full Pass',
-                    'MUN — General Pass / Full Pass',
+                    'A 方案：聯合國體驗日特級票',
+                    'B 方案：聯合國體驗日普通票',
+                    'C 方案：聯合國體驗日全票',
+                    'D 方案：模聯普通票',
+                    'E 方案：模聯全票',
                     '加購：住宿方案、2 週 Leadership Camp（10/6–17 線上夜間）'
                 ]
             },
