@@ -3,7 +3,6 @@ import { useLang } from '@/context/lang-context';
 
 const bg = './archive/59831757665060_.pic_hd.jpg';
 
-
 interface ViewProps {
     T: any;
     goRegister: any;
@@ -11,20 +10,11 @@ interface ViewProps {
     setAboutTab: any;
 }
 
-export function Hero({
-    T,
-    goRegister,
-    goAbout,
-    setAboutTab
-}: ViewProps) {
+export function Hero({ T, goRegister, goAbout, setAboutTab }: ViewProps) {
     const { L } = useLang();
     return (
         <section className="relative">
-            <img
-                src={bg}
-                alt="Macau skyline"
-                className="h-[70vh] w-full object-cover"
-            />
+            <img src={bg} alt="Macau skyline" className="h-[70vh] w-full object-cover" />
             <div className="bg-gray-100"></div>
             <div className="absolute inset-0 bg-slate-900/50" />
             <div className="absolute inset-0 flex items-center">

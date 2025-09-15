@@ -7,11 +7,7 @@ interface ViewProps {
     lang: LangKey;
 }
 
-
-export const Register = ({
-    T,
-    lang,
-}: ViewProps) => {
+export const Register = ({ T, lang }: ViewProps) => {
     const { L } = useLang();
     return (
         <main id="register" className="mx-auto max-w-7xl px-4 py-12">
@@ -85,5 +81,5 @@ export const Register = ({
                 </ul>
             </div>
         </main>
-    )
-}
+    );
+};

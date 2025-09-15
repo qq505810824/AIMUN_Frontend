@@ -47,7 +47,7 @@ export default function News() {
                     className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 mb-6"
                 >
                     <ArrowLeft className="h-4 w-4" />
-                    {L('Back to News', '返回最新消息')}
+                    {L('Back', '返回')}
                 </button>
 
                 <article className="rounded-xl border overflow-hidden">
@@ -74,8 +74,6 @@ export default function News() {
                         <h1 className="text-3xl font-bold mb-4">
                             {L(selectedNews.title, selectedNews.title_zh)}
                         </h1>
-
-                        {/* 内容 */}
                         <div className="prose max-w-none">
                             {L(
                                 selectedNews.description || '',
@@ -86,7 +84,7 @@ export default function News() {
                                         __html: L(
                                             selectedNews.description || '',
                                             selectedNews.description_zh || ''
-                                        ).toString()
+                                        ).toString().replaceAll('\n', '<br/>')
                                     }}
                                 />
                             ) : (
@@ -106,7 +104,12 @@ export default function News() {
         <main className="mx-auto max-w-7xl px-4 py-12">
             <div className="flex flex-col mb-4">
                 <h2 className="text-2xl md:text-3xl font-extrabold">{L('News', '最新消息')}</h2>
-                <p className="mt-2 text-slate-600">{L('Check out the latest news about global issues and technology.', '查閲關於全球資訊和科技發展的最新新聞')}</p>
+                <p className="mt-2 text-slate-600">
+                    {L(
+                        'Check out the latest news about global issues and technology.',
+                        '查閲關於全球資訊和科技發展的最新新聞'
+                    )}
+                </p>
             </div>
 
             {/* 添加加载状态 */}
@@ -142,7 +145,9 @@ export default function News() {
                                 />
                             ) : (
                                 <div className="w-full h-60 bg-gradient-to-br from-slate-200 to-slate-100 flex items-center justify-center">
-                                    <span className="h-60 text-slate-500 text-sm">{L(' ', ' ')}</span>
+                                    <span className="h-60 text-slate-500 text-sm">
+                                        {L(' ', ' ')}
+                                    </span>
                                 </div>
                             )}
                             <div className="p-4 flex-1 flex flex-col">
@@ -155,7 +160,8 @@ export default function News() {
                                 {(n.description || n.description_zh) && (
                                     <p className="text-sm text-slate-700 line-clamp-3">
                                         {L(
-                                            (n.description && n.description.replace(/<[^>]*>/g, '')) ||
+                                            (n.description &&
+                                                n.description.replace(/<[^>]*>/g, '')) ||
                                             '',
                                             (n.description_zh &&
                                                 n.description_zh.replace(/<[^>]*>/g, '')) ||

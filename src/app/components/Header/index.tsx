@@ -12,7 +12,7 @@ interface ViewProps {
 }
 
 export function HeaderView(props: ViewProps) {
-    const { T, section, setSection, } = props;
+    const { T, section, setSection } = props;
 
     const { lang, setLang } = useLang();
 
@@ -26,7 +26,7 @@ export function HeaderView(props: ViewProps) {
         router.push(section);
     };
 
-    const logout = async () => { };
+    const logout = async () => {};
 
     return (
         <>

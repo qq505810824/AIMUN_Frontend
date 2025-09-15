@@ -5,15 +5,10 @@ interface ViewProps {
     T: any;
     lang: LangKey;
     aboutTab: string;
-    setAboutTab: any
+    setAboutTab: any;
 }
 
-const About = ({
-    T,
-    lang,
-    aboutTab,
-    setAboutTab
-}: ViewProps) => {
+const About = ({ T, lang, aboutTab, setAboutTab }: ViewProps) => {
     const { L } = useLang();
     return (
         <main className="mx-auto max-w-7xl px-4 py-12">
@@ -45,7 +40,12 @@ const About = ({
                             description={T.about.sef.description}
                             tag={T.about.tabs.sef}
                         />
-                        <AboutInfo title={T.about.sef.infoTitle} lines={T.about.sef.info} points_title={T.about.un.points_title} points={T.about.sef.points} />
+                        <AboutInfo
+                            title={T.about.sef.infoTitle}
+                            lines={T.about.sef.info}
+                            points_title={T.about.un.points_title}
+                            points={T.about.sef.points}
+                        />
                     </>
                 )}
                 {aboutTab === 'aimun' && (
@@ -56,7 +56,12 @@ const About = ({
                             description={T.about.aimun.description}
                             tag={T.about.tabs.aimun}
                         />
-                        <AboutInfo title={T.about.aimun.infoTitle} lines={T.about.aimun.info} points_title={T.about.un.points_title} points={T.about.aimun.points} />
+                        <AboutInfo
+                            title={T.about.aimun.infoTitle}
+                            lines={T.about.aimun.info}
+                            points_title={T.about.un.points_title}
+                            points={T.about.aimun.points}
+                        />
                     </>
                 )}
                 {aboutTab === 'un' && (
@@ -67,13 +72,18 @@ const About = ({
                             description={T.about.un.description}
                             tag={T.about.tabs.un}
                         />
-                        <AboutInfo title={T.about.un.infoTitle} lines={T.about.un.info} points_title={T.about.un.points_title} points={T.about.un.points} />
+                        <AboutInfo
+                            title={T.about.un.infoTitle}
+                            lines={T.about.un.info}
+                            points_title={T.about.un.points_title}
+                            points={T.about.un.points}
+                        />
                     </>
                 )}
             </div>
         </main>
     );
-}
+};
 
 export default About;
 
@@ -96,15 +106,23 @@ function AboutCard({
                     {tag}
                 </div>
                 <h3 className="mt-3 text-xl font-semibold">{title}</h3>
-                <h5 className="mt-3 space-y-2 text-slate-700 list-disc">
-                    {description}
-                </h5>
+                <h5 className="mt-3 space-y-2 text-slate-700 list-disc">{description}</h5>
             </div>
         </div>
     );
 }
 
-function AboutInfo({ title, lines, points_title, points }: { title: string; lines: string[]; points_title: string, points: string[] }) {
+function AboutInfo({
+    title,
+    lines,
+    points_title,
+    points
+}: {
+    title: string;
+    lines: string[];
+    points_title: string;
+    points: string[];
+}) {
     return (
         <div className="rounded-2xl bg-white border border-slate-200 shadow-sm p-6">
             <h4 className="text-lg font-semibold">{title}</h4>
@@ -114,12 +132,10 @@ function AboutInfo({ title, lines, points_title, points }: { title: string; line
                 ))}
             </div>
 
-            <div className='mt-6'>
+            <div className="mt-6">
                 <h4 className="text-lg font-semibold">{points_title}</h4>
                 <div className="mt-3 space-y-1 text-slate-700">
-                    {points?.map((b: string, idx: number) => (
-                        <p key={idx}>• {b}</p>
-                    ))}
+                    {points?.map((b: string, idx: number) => <p key={idx}>• {b}</p>)}
                 </div>
             </div>
         </div>

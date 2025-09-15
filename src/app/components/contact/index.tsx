@@ -8,11 +8,7 @@ interface ViewProps {
     lang: LangKey;
 }
 
-
-export const Contact = ({
-    T,
-    lang
-}: ViewProps) => {
+export const Contact = ({ T, lang }: ViewProps) => {
     const [sent, setSent] = useState(false);
     const [loading, setLoading] = useState(false);
     const [err, setErr] = useState('');
@@ -137,4 +133,4 @@ export const Contact = ({
             </div>
         </main>
     );
-}
+};

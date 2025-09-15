@@ -1,19 +1,13 @@
 'use client';
 
-import { LangKey } from "@/app/(commonLayout)/home/page";
-
-
+import { LangKey } from '@/app/(commonLayout)/home/page';
 
 interface ViewProps {
     T: any;
     lang: LangKey;
 }
 
-export const Highlights = ({
-    T,
-    lang
-}: ViewProps) => {
-
+export const Highlights = ({ T, lang }: ViewProps) => {
     const cards = T.highlights.cards;
 
     return (
@@ -37,5 +31,5 @@ export const Highlights = ({
                 </div>
             </main>
         </>
-    )
-}
+    );
+};

@@ -50,7 +50,6 @@ export default function App() {
 
     return (
         <div className="min-h-screen bg-slate-50 text-slate-900">
-
             <HeaderView T={T} section={tab} setSection={setTab} />
 
             {tab === 'home' && (
@@ -282,7 +281,8 @@ const translations: Record<LangKey, any> = {
             },
             sef: {
                 title: 'Smart Education Forum (SEF) — For Principals & Educators',
-                description: 'The 2025 Smart Education Forum is dedicated to the theme of “Human-AI Co-creation and Linguistic Intelligence,” with a strong emphasis on redefining how AI can serve as a lifelong learning partner, empowering, rather than overshadowing, human growth. ',
+                description:
+                    'The 2025 Smart Education Forum is dedicated to the theme of “Human-AI Co-creation and Linguistic Intelligence,” with a strong emphasis on redefining how AI can serve as a lifelong learning partner, empowering, rather than overshadowing, human growth. ',
                 points_title: 'Event Highlights',
                 points: [
                     'Keynote by UNU Rector Prof. Tshilidzi Marwala',
@@ -300,7 +300,8 @@ const translations: Record<LangKey, any> = {
             },
             aimun: {
                 title: 'AIMUN Conference — For Grade 4–12 & University Students',
-                description: 'The 2025 Asia-Pacific international Model United Nations (AIMUN) Conference, held October 25-26 in Macau in partnership with UNU Macau. It is the first ever AI-integrated MUN.  The conference features high-level speakers from the UN and a UNU-certified credential to outstanding performers.',
+                description:
+                    'The 2025 Asia-Pacific international Model United Nations (AIMUN) Conference, held October 25-26 in Macau in partnership with UNU Macau. It is the first ever AI-integrated MUN.  The conference features high-level speakers from the UN and a UNU-certified credential to outstanding performers.',
                 points_title: 'Event Highlights',
                 points: [
                     'First AI-integrated MUN in close collaboration with the United Nations University',
@@ -317,7 +318,8 @@ const translations: Record<LangKey, any> = {
             },
             un: {
                 title: 'UN Experience Day — For Students aged 10–25',
-                description: 'The UN Experience day is an exclusive event for students aiming to provide them with global exposure and key insights from industry leaders. The event features a range of activities including, NVIDIA hands-on workshop, private meeting with UNESCO,  project incubations and UN-certified certificates',
+                description:
+                    'The UN Experience day is an exclusive event for students aiming to provide them with global exposure and key insights from industry leaders. The event features a range of activities including, NVIDIA hands-on workshop, private meeting with UNESCO,  project incubations and UN-certified certificates',
                 points_title: 'Event Highlights',
                 points: [
                     'Hands-on SDG workshops & heritage exploration',
@@ -449,7 +451,8 @@ const translations: Record<LangKey, any> = {
             tabs: { sef: '智慧教育論壇', aimun: '亞太區國際模擬聯合國大會', un: '聯合國體驗日' },
             sef: {
                 title: '智慧教育論壇（SEF）— 校長與教育者',
-                description: '2025智慧教育論壇以「人機共創與語言智能」為核心議題，致力重新定義人工智慧如何成為終身學習夥伴——賦能人類成長，而非取代人類發展。',
+                description:
+                    '2025智慧教育論壇以「人機共創與語言智能」為核心議題，致力重新定義人工智慧如何成為終身學習夥伴——賦能人類成長，而非取代人類發展。',
                 points_title: '活動亮點',
                 points: [
                     'UNU 校長主題演講',
@@ -463,7 +466,8 @@ const translations: Record<LangKey, any> = {
             },
             aimun: {
                 title: 'AIMUN 模擬聯合國大會 — 小四至大學',
-                description: '2025年亞太國際模擬聯合國大會（AIMUN）於10月25日至26日在澳門舉行，我們與聯合國大學澳門分校協辦。本次會議創下全球首例導入人工智慧技術的模擬聯合國盛會，特邀聯合國高階官員擔任主講嘉賓，並將頒發聯合國大學認證的卓越表現證書予傑出與會者。',
+                description:
+                    '2025年亞太國際模擬聯合國大會（AIMUN）於10月25日至26日在澳門舉行，我們與聯合國大學澳門分校協辦。本次會議創下全球首例導入人工智慧技術的模擬聯合國盛會，特邀聯合國高階官員擔任主講嘉賓，並將頒發聯合國大學認證的卓越表現證書予傑出與會者。',
                 points_title: '活動亮點',
                 points: [
                     '全球首個 AI 結合模聯，與聯合國大學緊密合作',
@@ -476,7 +480,8 @@ const translations: Record<LangKey, any> = {
             },
             un: {
                 title: '聯合國體驗日 — 10–25 歲學生',
-                description: '聯合國體驗日是專為學生打造的獨家活動，旨在提供全球視野並獲取業界領袖的關鍵洞見。活動包含多項特色環節：NVIDIA實作工作坊、聯合國教科文組織專屬會談、專案孵化計畫，以及聯合國認證證書頒發。',
+                description:
+                    '聯合國體驗日是專為學生打造的獨家活動，旨在提供全球視野並獲取業界領袖的關鍵洞見。活動包含多項特色環節：NVIDIA實作工作坊、聯合國教科文組織專屬會談、專案孵化計畫，以及聯合國認證證書頒發。',
                 points_title: '活動亮點',
                 points: [
                     'SDG 實作工作坊與文化探索',
