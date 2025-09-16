@@ -26,10 +26,13 @@ const LocaleLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <html className="h-full">
             <head>
+                <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon.ico" />
+                <link rel="shortcut icon" href="./favicon/favicon.ico" />
                 <meta name="theme-color" content="#FFFFFF" />
                 <meta name="mobile-web-app-capable" content="yes" />
                 <meta name="apple-mobile-web-app-capable" content="yes" />
                 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
             </head>
             <body className="h-full select-auto">
                 <Topbar />

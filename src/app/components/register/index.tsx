@@ -17,7 +17,8 @@ export const Register = ({ T, lang }: ViewProps) => {
                     <p className="mt-2 text-slate-600 max-w-3xl">{T.register.lead}</p>
                 </div>
                 <a
-                    href="#"
+                    href="https://qr61.cn/oOux00/qKbdeKf"
+                    target='_blank'
                     className="rounded-xl border text-slate-700  text-sm border-slate-300 px-4 py-1 hover:bg-slate-100"
                 >
                     {T.register.viewDetail}
@@ -34,17 +35,18 @@ export const Register = ({ T, lang }: ViewProps) => {
                     </ul>
                     <div className="mt-4 flex gap-3">
                         <a
-                            href="#"
+                            href="https://forms.office.com/r/Y31c6n6Cu8"
+                            target='_blank'
                             className="rounded-xl bg-blue-600 text-white px-4 py-2 hover:bg-blue-700"
                         >
                             {T.register.btnIndividual}
                         </a>
-                        <a
+                        {/* <a
                             href="#"
                             className="rounded-xl border border-slate-300 px-4 py-2 hover:bg-slate-100"
                         >
                             {T.register.btnGroup}
-                        </a>
+                        </a> */}
                     </div>
                 </div>
 
@@ -57,13 +59,15 @@ export const Register = ({ T, lang }: ViewProps) => {
                     </ul>
                     <div className="mt-4 flex gap-3">
                         <a
-                            href="#"
+                            href="https://forms.office.com/r/RZ5MxqKXmf"
+                            target='_blank'
                             className="rounded-xl bg-emerald-600 text-white px-4 py-2 hover:bg-emerald-700"
                         >
                             {T.register.btnIndividual}
                         </a>
                         <a
-                            href="#"
+                            href="https://qr61.cn/oOux00/qpwAOcp"
+                            target='_blank'
                             className="rounded-xl border border-slate-300 px-4 py-2 hover:bg-slate-100"
                         >
                             {T.register.btnGroup}

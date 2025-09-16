@@ -357,7 +357,7 @@ const translations: Record<LangKey, any> = {
         },
         register: {
             lead: 'Choose your path and secure your spot. Early-bird deadline: Sep 30, 2025.',
-            btnIndividual: 'Individual',
+            btnIndividual: 'Register Now',
             btnGroup: 'Group / School',
             viewDetail: 'View detailed packages',
             educators: {
@@ -373,9 +373,9 @@ const translations: Record<LangKey, any> = {
                 items: [
                     'Package A: Package A: UN Experience Day VIP Premium Pass ',
                     'Package B: UN Experience Day General Pass  ',
-                    'Package C: UN Experience Day Full Pass  ',
-                    'Package D: Model United Nations General Pass ',
-                    'Package E: Model United Nations Full Pass ',
+                    // 'Package C: UN Experience Day Full Pass  ',
+                    'Package C: Model United Nations General Pass ',
+                    'Package D: Model United Nations Full Pass ',
                     'Add-ons: Residential package, 2-week AIMUN Leadership Camp (Oct 6–17) '
                 ]
             },
@@ -479,7 +479,11 @@ const translations: Record<LangKey, any> = {
                     '資深顧問與聯合國官員指導'
                 ],
                 infoTitle: '詳細資訊',
-                info: ['日期：2025/10/25–26', '地點：聯合國大學駐澳門研究所 / 永利皇宮', '語言：英 / 中']
+                info: [
+                    '日期：2025/10/25–26',
+                    '地點：聯合國大學駐澳門研究所 / 永利皇宮',
+                    '語言：英 / 中'
+                ]
             },
             un: {
                 title: '聯合國體驗日 — 10-25歲學生專屬',
@@ -518,7 +522,7 @@ const translations: Record<LangKey, any> = {
         },
         register: {
             lead: '選擇合適方案並完成報名。早鳥截止：2025/09/30。',
-            btnIndividual: '個人報名',
+            btnIndividual: '立即報名',
             btnGroup: '團體 / 學校',
             viewDetail: '查看參會方案',
             educators: {
@@ -534,9 +538,9 @@ const translations: Record<LangKey, any> = {
                 items: [
                     'A 方案：聯合國體驗日特級票',
                     'B 方案：聯合國體驗日普通票',
-                    'C 方案：聯合國體驗日全票',
-                    'D 方案：模聯普通票',
-                    'E 方案：模聯全票',
+                    // 'C 方案：聯合國體驗日全票',
+                    'C 方案：模聯普通票',
+                    'D 方案：模聯全票',
                     '加購：住宿方案、2 週 Leadership Camp（10/6–17 線上夜間）'
                 ]
             },
