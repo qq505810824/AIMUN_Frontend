@@ -18,7 +18,7 @@ export const Register = ({ T, lang }: ViewProps) => {
                 </div>
                 <a
                     href="https://qr61.cn/oOux00/qKbdeKf"
-                    target='_blank'
+                    target="_blank"
                     className="rounded-xl border text-slate-700  text-sm border-slate-300 px-4 py-1 hover:bg-slate-100"
                 >
                     {T.register.viewDetail}
@@ -36,7 +36,7 @@ export const Register = ({ T, lang }: ViewProps) => {
                     <div className="mt-4 flex gap-3">
                         <a
                             href="https://forms.office.com/r/Y31c6n6Cu8"
-                            target='_blank'
+                            target="_blank"
                             className="rounded-xl bg-blue-600 text-white px-4 py-2 hover:bg-blue-700"
                         >
                             {T.register.btnIndividual}
@@ -60,14 +60,14 @@ export const Register = ({ T, lang }: ViewProps) => {
                     <div className="mt-4 flex gap-3">
                         <a
                             href="https://forms.office.com/r/RZ5MxqKXmf"
-                            target='_blank'
+                            target="_blank"
                             className="rounded-xl bg-emerald-600 text-white px-4 py-2 hover:bg-emerald-700"
                         >
-                            {T.register.btnIndividual}
+                            {T.register.btnIndividualStudent}
                         </a>
                         <a
                             href="https://qr61.cn/oOux00/qpwAOcp"
-                            target='_blank'
+                            target="_blank"
                             className="rounded-xl border border-slate-300 px-4 py-2 hover:bg-slate-100"
                         >
                             {T.register.btnGroup}

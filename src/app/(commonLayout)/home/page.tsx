@@ -358,6 +358,7 @@ const translations: Record<LangKey, any> = {
         register: {
             lead: 'Choose your path and secure your spot. Early-bird deadline: Sep 30, 2025.',
             btnIndividual: 'Register Now',
+            btnIndividualStudent: 'Individual',
             btnGroup: 'Group / School',
             viewDetail: 'View detailed packages',
             educators: {
@@ -523,6 +524,7 @@ const translations: Record<LangKey, any> = {
         register: {
             lead: '選擇合適方案並完成報名。早鳥截止：2025/09/30。',
             btnIndividual: '立即報名',
+            btnIndividualStudent: '個人報名',
             btnGroup: '團體 / 學校',
             viewDetail: '查看參會方案',
             educators: {
